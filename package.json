@@ -31,12 +31,10 @@
   "engines": {
     "node": ">=8.14.0"
   },
-  "dependencies": {
-    "@stencil/core": "^0.18.1",
-    "microbit-web-bluetooth": "^0.1.1"
-  },
   "devDependencies": {
+    "@joseph184/rollup-plugin-node-builtins": "2.1.4",
+    "@stencil/core": "^0.18.1",
     "@stencil/state-tunnel": "0.0.8",
-    "rollup-plugin-node-builtins": "^2.1.2"
+    "microbit-web-bluetooth": "^0.1.1"
   }
 }

@@ -1,5 +1,5 @@
 import { Config } from '@stencil/core';
-import builtins from 'rollup-plugin-node-builtins';
+import builtins from '@joseph184/rollup-plugin-node-builtins';
 
 export const config: Config = {
     namespace: 'microbit',
