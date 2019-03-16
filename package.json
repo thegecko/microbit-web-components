@@ -1,0 +1,42 @@
+{
+  "name": "microbit-web-components",
+  "version": "0.1.0",
+  "description": "Web Components library for micro:bit",
+  "homepage": "https://github.com/thegecko/microbit-web-components",
+  "license": "MIT",
+  "module": "dist/esm/index.js",
+  "main": "dist/index.js",
+  "types": "dist/types/components.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "files": [
+    "dist/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thegecko/microbit-web-components.git"
+  },
+  "author": "Rob Moran <rob@thegecko.org>",
+  "keywords": [
+    "micro:bit",
+    "microbit",
+    "webcomponents",
+    "web-components"
+  ],
+  "scripts": {
+    "build": "stencil build --docs",
+    "start": "stencil build --dev --watch --serve",
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watchAll"
+  },
+  "engines": {
+    "node": ">=8.14.0"
+  },
+  "dependencies": {
+    "@stencil/core": "^0.18.1",
+    "microbit-web-bluetooth": "^0.1.1"
+  },
+  "devDependencies": {
+    "@stencil/state-tunnel": "0.0.8",
+    "rollup-plugin-node-builtins": "^2.1.2"
+  }
+}
