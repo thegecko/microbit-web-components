@@ -16,7 +16,6 @@ export const config: Config = {
         { type: 'docs' },
         {
             type: 'www',
-            baseUrl: '/microbit-web-components/www/',
             serviceWorker: null
         }
     ]
