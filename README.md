@@ -7,19 +7,45 @@ Web Components library for micro:bit
 
 # Implementation Status
 
-- [x] Select Device
-- [x] Connection Status
-- [x] Firmware Information
-- [ ] Hardware Information
-- [ ] Manufacturer Information
-- [ ] Model Number
-- [ ] Serial Number
-- [x] Write Text
-- [ ] Write LEDs
-- [ ] Button States
+## Connection
+- [x] Connect/Disconnect
+
+## Device Information
+- [x] Name
+- [x] Firmware Version
+- [x] Hardware Version
+- [x] Manufacturer Name
+- [x] Model Number
+- [x] Serial Number
+
+## State Class Wrappers
+- [ ] Connection State
+- [ ] Button State
+- [ ] IO Pin State
+
+## Data
 - [x] Temperature
-- [ ] Accelerometer Data
-- [ ] Magnetometer Data
-- [ ] Read / Write IO (A/D/PWM)
-- [ ] Read / Write UART
+- [ ] Compass
+- [ ] Movement
+- [ ] Write IO
+
+## LEDs
+- [x] Write Text
+- [ ] Read/Write LED Matrix
+
+# Serial
+- [ ] Send Message
+- [ ] Receive Message
+
+### Events
+- [ ] Send Event
+- [ ] Receive Event
+- [ ] Client Channel Selection
+- [ ] Microbit Channel Selection
+
+### Firmware
 - [ ] Update Firmware
+
+
+buttons disappear with no text
+remove form, enter chsnre too

@@ -1,6 +1,6 @@
 import { Component, Prop, Element, State, Watch } from "@stencil/core";
 import { Services } from "microbit-web-bluetooth";
-import DeviceTunnel from '../data/device-tunnel';
+import DeviceTunnel from '../../device-tunnel';
 
 @Component({
     tag: 'microbit-text'

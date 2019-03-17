@@ -1,6 +1,7 @@
 import { Component, State } from "@stencil/core";
 import { Services } from 'microbit-web-bluetooth';
-import DeviceTunnel from '../data/device-tunnel';
+import { DeviceInformation } from "microbit-web-bluetooth/types/services/device-information";
+import DeviceTunnel from '../device-tunnel';
 
 @Component({
     tag: 'microbit-app'
@@ -9,6 +10,7 @@ export class MicrobitApp {
 
     @State() device: BluetoothDevice = undefined;
     @State() services: Services = undefined;
+    @State() deviceInformation: DeviceInformation = undefined;
 
     setDevice = (device: BluetoothDevice) => {
         this.device = device;
@@ -18,12 +20,18 @@ export class MicrobitApp {
         this.services = services;
     }
 
+    setDeviceInformation = (deviceInformation: DeviceInformation) => {
+        this.deviceInformation = deviceInformation;
+    }
+
     render() {
         const deviceState = {
             device: this.device,
             services: this.services,
+            deviceInformation: this.deviceInformation,
             setDevice: this.setDevice,
-            setServices: this.setServices
+            setServices: this.setServices,
+            setDeviceInformation: this.setDeviceInformation
         };
         return (
             <DeviceTunnel.Provider state={deviceState}>

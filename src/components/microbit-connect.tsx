@@ -1,6 +1,7 @@
 import { Component, Prop, Element } from "@stencil/core";
 import { requestMicrobit, getServices, Services } from "microbit-web-bluetooth";
-import DeviceTunnel from '../data/device-tunnel';
+import { DeviceInformation } from "microbit-web-bluetooth/types/services/device-information";
+import DeviceTunnel from '../device-tunnel';
 
 @Component({
     tag: 'microbit-connect'
@@ -10,6 +11,7 @@ export class MicrobitConnect {
     @Prop() device: BluetoothDevice = undefined;
     @Prop() setDevice: (device: BluetoothDevice) => void;
     @Prop() setServices: (services: Services) => void;
+    @Prop() setDeviceInformation: (deviceInformation: DeviceInformation) => void;
 
     /**
      * The button label to connect
@@ -38,6 +40,7 @@ export class MicrobitConnect {
             }
             this.setDevice(undefined);
             this.setServices(undefined);
+            this.setDeviceInformation(undefined);
             return;
         }
 
@@ -46,8 +49,12 @@ export class MicrobitConnect {
             this.setDevice(device);
             const services = await getServices(device);
             this.setServices(services);
+            if (services.deviceInformationService) {
+                const deviceInformation = await services.deviceInformationService.readDeviceInformation();
+                this.setDeviceInformation(deviceInformation);
+            }
         }
     }
 }
 
-DeviceTunnel.injectProps(MicrobitConnect, ['device', 'setDevice', 'setServices']);
+DeviceTunnel.injectProps(MicrobitConnect, ['device', 'setDevice', 'setServices', 'setDeviceInformation']);

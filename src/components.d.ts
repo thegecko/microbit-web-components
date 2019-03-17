@@ -11,85 +11,12 @@ import '@stencil/state-tunnel';
 import {
   Services,
 } from 'microbit-web-bluetooth';
+import {
+  DeviceInformation,
+} from 'microbit-web-bluetooth/types/services/device-information';
 
 
 export namespace Components {
-
-  interface MicrobitApp {}
-  interface MicrobitAppAttributes extends StencilHTMLAttributes {}
-
-  interface MicrobitConnect {
-    /**
-    * The button label to connect
-    */
-    'connectLabel': string;
-    'device': BluetoothDevice;
-    /**
-    * The button label to disconnect
-    */
-    'disconnectLabel': string;
-    'setDevice': (device: BluetoothDevice) => void;
-    'setServices': (services: Services) => void;
-  }
-  interface MicrobitConnectAttributes extends StencilHTMLAttributes {
-    /**
-    * The button label to connect
-    */
-    'connectLabel'?: string;
-    'device'?: BluetoothDevice;
-    /**
-    * The button label to disconnect
-    */
-    'disconnectLabel'?: string;
-    'setDevice'?: (device: BluetoothDevice) => void;
-    'setServices'?: (services: Services) => void;
-  }
-
-  interface MicrobitFirmware {
-    /**
-    * The text shown when disconnected
-    */
-    'disconnectedText': string;
-    /**
-    * The text shown when no firmware info
-    */
-    'noInfo': string;
-    'services': Services;
-  }
-  interface MicrobitFirmwareAttributes extends StencilHTMLAttributes {
-    /**
-    * The text shown when disconnected
-    */
-    'disconnectedText'?: string;
-    /**
-    * The text shown when no firmware info
-    */
-    'noInfo'?: string;
-    'services'?: Services;
-  }
-
-  interface MicrobitStatus {
-    /**
-    * The text shown when connected
-    */
-    'connectedText': string;
-    'device': BluetoothDevice;
-    /**
-    * The text shown when disconnected
-    */
-    'disconnectedText': string;
-  }
-  interface MicrobitStatusAttributes extends StencilHTMLAttributes {
-    /**
-    * The text shown when connected
-    */
-    'connectedText'?: string;
-    'device'?: BluetoothDevice;
-    /**
-    * The text shown when disconnected
-    */
-    'disconnectedText'?: string;
-  }
 
   interface MicrobitTemperature {
     /**
@@ -122,6 +49,136 @@ export namespace Components {
     'temperaturePeriod'?: number;
   }
 
+  interface MicrobitFirmware {
+    'deviceInformation': DeviceInformation;
+    /**
+    * The text shown when disconnected
+    */
+    'disconnectedText': string;
+    /**
+    * The text shown when no firmware version
+    */
+    'noInfo': string;
+  }
+  interface MicrobitFirmwareAttributes extends StencilHTMLAttributes {
+    'deviceInformation'?: DeviceInformation;
+    /**
+    * The text shown when disconnected
+    */
+    'disconnectedText'?: string;
+    /**
+    * The text shown when no firmware version
+    */
+    'noInfo'?: string;
+  }
+
+  interface MicrobitHardware {
+    'deviceInformation': DeviceInformation;
+    /**
+    * The text shown when disconnected
+    */
+    'disconnectedText': string;
+    /**
+    * The text shown when no hardware version
+    */
+    'noInfo': string;
+  }
+  interface MicrobitHardwareAttributes extends StencilHTMLAttributes {
+    'deviceInformation'?: DeviceInformation;
+    /**
+    * The text shown when disconnected
+    */
+    'disconnectedText'?: string;
+    /**
+    * The text shown when no hardware version
+    */
+    'noInfo'?: string;
+  }
+
+  interface MicrobitManufacturer {
+    'deviceInformation': DeviceInformation;
+    /**
+    * The text shown when disconnected
+    */
+    'disconnectedText': string;
+    /**
+    * The text shown when no manufacturer name
+    */
+    'noInfo': string;
+  }
+  interface MicrobitManufacturerAttributes extends StencilHTMLAttributes {
+    'deviceInformation'?: DeviceInformation;
+    /**
+    * The text shown when disconnected
+    */
+    'disconnectedText'?: string;
+    /**
+    * The text shown when no manufacturer name
+    */
+    'noInfo'?: string;
+  }
+
+  interface MicrobitModel {
+    'deviceInformation': DeviceInformation;
+    /**
+    * The text shown when disconnected
+    */
+    'disconnectedText': string;
+    /**
+    * The text shown when no model number
+    */
+    'noInfo': string;
+  }
+  interface MicrobitModelAttributes extends StencilHTMLAttributes {
+    'deviceInformation'?: DeviceInformation;
+    /**
+    * The text shown when disconnected
+    */
+    'disconnectedText'?: string;
+    /**
+    * The text shown when no model number
+    */
+    'noInfo'?: string;
+  }
+
+  interface MicrobitName {
+    'device': BluetoothDevice;
+    /**
+    * The text shown when disconnected
+    */
+    'disconnectedText': string;
+  }
+  interface MicrobitNameAttributes extends StencilHTMLAttributes {
+    'device'?: BluetoothDevice;
+    /**
+    * The text shown when disconnected
+    */
+    'disconnectedText'?: string;
+  }
+
+  interface MicrobitSerial {
+    'deviceInformation': DeviceInformation;
+    /**
+    * The text shown when disconnected
+    */
+    'disconnectedText': string;
+    /**
+    * The text shown when no serial number
+    */
+    'noInfo': string;
+  }
+  interface MicrobitSerialAttributes extends StencilHTMLAttributes {
+    'deviceInformation'?: DeviceInformation;
+    /**
+    * The text shown when disconnected
+    */
+    'disconnectedText'?: string;
+    /**
+    * The text shown when no serial number
+    */
+    'noInfo'?: string;
+  }
+
   interface MicrobitText {
     /**
     * The text shown on the button
@@ -144,27 +201,115 @@ export namespace Components {
     'scrollDelay'?: number;
     'services'?: Services;
   }
+
+  interface MicrobitApp {}
+  interface MicrobitAppAttributes extends StencilHTMLAttributes {}
+
+  interface MicrobitConnect {
+    /**
+    * The button label to connect
+    */
+    'connectLabel': string;
+    'device': BluetoothDevice;
+    /**
+    * The button label to disconnect
+    */
+    'disconnectLabel': string;
+    'setDevice': (device: BluetoothDevice) => void;
+    'setDeviceInformation': (deviceInformation: DeviceInformation) => void;
+    'setServices': (services: Services) => void;
+  }
+  interface MicrobitConnectAttributes extends StencilHTMLAttributes {
+    /**
+    * The button label to connect
+    */
+    'connectLabel'?: string;
+    'device'?: BluetoothDevice;
+    /**
+    * The button label to disconnect
+    */
+    'disconnectLabel'?: string;
+    'setDevice'?: (device: BluetoothDevice) => void;
+    'setDeviceInformation'?: (deviceInformation: DeviceInformation) => void;
+    'setServices'?: (services: Services) => void;
+  }
 }
 
 declare global {
   interface StencilElementInterfaces {
+    'MicrobitTemperature': Components.MicrobitTemperature;
+    'MicrobitFirmware': Components.MicrobitFirmware;
+    'MicrobitHardware': Components.MicrobitHardware;
+    'MicrobitManufacturer': Components.MicrobitManufacturer;
+    'MicrobitModel': Components.MicrobitModel;
+    'MicrobitName': Components.MicrobitName;
+    'MicrobitSerial': Components.MicrobitSerial;
+    'MicrobitText': Components.MicrobitText;
     'MicrobitApp': Components.MicrobitApp;
     'MicrobitConnect': Components.MicrobitConnect;
-    'MicrobitFirmware': Components.MicrobitFirmware;
-    'MicrobitStatus': Components.MicrobitStatus;
-    'MicrobitTemperature': Components.MicrobitTemperature;
-    'MicrobitText': Components.MicrobitText;
   }
 
   interface StencilIntrinsicElements {
+    'microbit-temperature': Components.MicrobitTemperatureAttributes;
+    'microbit-firmware': Components.MicrobitFirmwareAttributes;
+    'microbit-hardware': Components.MicrobitHardwareAttributes;
+    'microbit-manufacturer': Components.MicrobitManufacturerAttributes;
+    'microbit-model': Components.MicrobitModelAttributes;
+    'microbit-name': Components.MicrobitNameAttributes;
+    'microbit-serial': Components.MicrobitSerialAttributes;
+    'microbit-text': Components.MicrobitTextAttributes;
     'microbit-app': Components.MicrobitAppAttributes;
     'microbit-connect': Components.MicrobitConnectAttributes;
-    'microbit-firmware': Components.MicrobitFirmwareAttributes;
-    'microbit-status': Components.MicrobitStatusAttributes;
-    'microbit-temperature': Components.MicrobitTemperatureAttributes;
-    'microbit-text': Components.MicrobitTextAttributes;
   }
 
+
+  interface HTMLMicrobitTemperatureElement extends Components.MicrobitTemperature, HTMLStencilElement {}
+  var HTMLMicrobitTemperatureElement: {
+    prototype: HTMLMicrobitTemperatureElement;
+    new (): HTMLMicrobitTemperatureElement;
+  };
+
+  interface HTMLMicrobitFirmwareElement extends Components.MicrobitFirmware, HTMLStencilElement {}
+  var HTMLMicrobitFirmwareElement: {
+    prototype: HTMLMicrobitFirmwareElement;
+    new (): HTMLMicrobitFirmwareElement;
+  };
+
+  interface HTMLMicrobitHardwareElement extends Components.MicrobitHardware, HTMLStencilElement {}
+  var HTMLMicrobitHardwareElement: {
+    prototype: HTMLMicrobitHardwareElement;
+    new (): HTMLMicrobitHardwareElement;
+  };
+
+  interface HTMLMicrobitManufacturerElement extends Components.MicrobitManufacturer, HTMLStencilElement {}
+  var HTMLMicrobitManufacturerElement: {
+    prototype: HTMLMicrobitManufacturerElement;
+    new (): HTMLMicrobitManufacturerElement;
+  };
+
+  interface HTMLMicrobitModelElement extends Components.MicrobitModel, HTMLStencilElement {}
+  var HTMLMicrobitModelElement: {
+    prototype: HTMLMicrobitModelElement;
+    new (): HTMLMicrobitModelElement;
+  };
+
+  interface HTMLMicrobitNameElement extends Components.MicrobitName, HTMLStencilElement {}
+  var HTMLMicrobitNameElement: {
+    prototype: HTMLMicrobitNameElement;
+    new (): HTMLMicrobitNameElement;
+  };
+
+  interface HTMLMicrobitSerialElement extends Components.MicrobitSerial, HTMLStencilElement {}
+  var HTMLMicrobitSerialElement: {
+    prototype: HTMLMicrobitSerialElement;
+    new (): HTMLMicrobitSerialElement;
+  };
+
+  interface HTMLMicrobitTextElement extends Components.MicrobitText, HTMLStencilElement {}
+  var HTMLMicrobitTextElement: {
+    prototype: HTMLMicrobitTextElement;
+    new (): HTMLMicrobitTextElement;
+  };
 
   interface HTMLMicrobitAppElement extends Components.MicrobitApp, HTMLStencilElement {}
   var HTMLMicrobitAppElement: {
@@ -178,46 +323,30 @@ declare global {
     new (): HTMLMicrobitConnectElement;
   };
 
-  interface HTMLMicrobitFirmwareElement extends Components.MicrobitFirmware, HTMLStencilElement {}
-  var HTMLMicrobitFirmwareElement: {
-    prototype: HTMLMicrobitFirmwareElement;
-    new (): HTMLMicrobitFirmwareElement;
-  };
-
-  interface HTMLMicrobitStatusElement extends Components.MicrobitStatus, HTMLStencilElement {}
-  var HTMLMicrobitStatusElement: {
-    prototype: HTMLMicrobitStatusElement;
-    new (): HTMLMicrobitStatusElement;
-  };
-
-  interface HTMLMicrobitTemperatureElement extends Components.MicrobitTemperature, HTMLStencilElement {}
-  var HTMLMicrobitTemperatureElement: {
-    prototype: HTMLMicrobitTemperatureElement;
-    new (): HTMLMicrobitTemperatureElement;
-  };
-
-  interface HTMLMicrobitTextElement extends Components.MicrobitText, HTMLStencilElement {}
-  var HTMLMicrobitTextElement: {
-    prototype: HTMLMicrobitTextElement;
-    new (): HTMLMicrobitTextElement;
-  };
-
   interface HTMLElementTagNameMap {
+    'microbit-temperature': HTMLMicrobitTemperatureElement
+    'microbit-firmware': HTMLMicrobitFirmwareElement
+    'microbit-hardware': HTMLMicrobitHardwareElement
+    'microbit-manufacturer': HTMLMicrobitManufacturerElement
+    'microbit-model': HTMLMicrobitModelElement
+    'microbit-name': HTMLMicrobitNameElement
+    'microbit-serial': HTMLMicrobitSerialElement
+    'microbit-text': HTMLMicrobitTextElement
     'microbit-app': HTMLMicrobitAppElement
     'microbit-connect': HTMLMicrobitConnectElement
-    'microbit-firmware': HTMLMicrobitFirmwareElement
-    'microbit-status': HTMLMicrobitStatusElement
-    'microbit-temperature': HTMLMicrobitTemperatureElement
-    'microbit-text': HTMLMicrobitTextElement
   }
 
   interface ElementTagNameMap {
+    'microbit-temperature': HTMLMicrobitTemperatureElement;
+    'microbit-firmware': HTMLMicrobitFirmwareElement;
+    'microbit-hardware': HTMLMicrobitHardwareElement;
+    'microbit-manufacturer': HTMLMicrobitManufacturerElement;
+    'microbit-model': HTMLMicrobitModelElement;
+    'microbit-name': HTMLMicrobitNameElement;
+    'microbit-serial': HTMLMicrobitSerialElement;
+    'microbit-text': HTMLMicrobitTextElement;
     'microbit-app': HTMLMicrobitAppElement;
     'microbit-connect': HTMLMicrobitConnectElement;
-    'microbit-firmware': HTMLMicrobitFirmwareElement;
-    'microbit-status': HTMLMicrobitStatusElement;
-    'microbit-temperature': HTMLMicrobitTemperatureElement;
-    'microbit-text': HTMLMicrobitTextElement;
   }
 
 
