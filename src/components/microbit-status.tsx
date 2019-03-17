@@ -1,10 +1,8 @@
 import { Component, Prop, Element } from "@stencil/core";
-import DeviceTunnel from '../../data/device-tunnel';
+import DeviceTunnel from '../data/device-tunnel';
 
 @Component({
-    tag: 'microbit-status',
-    styleUrl: 'microbit-status.css',
-    shadow: true
+    tag: 'microbit-status'
 })
 export class MicrobitStatus {
     @Element() el;

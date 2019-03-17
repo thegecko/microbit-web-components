@@ -1,11 +1,9 @@
 import { Component, Prop, Element } from "@stencil/core";
 import { requestMicrobit, getServices, Services } from "microbit-web-bluetooth";
-import DeviceTunnel from '../../data/device-tunnel';
+import DeviceTunnel from '../data/device-tunnel';
 
 @Component({
-    tag: 'microbit-connect',
-    styleUrl: 'microbit-connect.css',
-    shadow: true
+    tag: 'microbit-connect'
 })
 export class MicrobitConnect {
     @Element() el;
@@ -39,6 +37,7 @@ export class MicrobitConnect {
                 await this.device.gatt.disconnect();
             }
             this.setDevice(undefined);
+            this.setServices(undefined);
             return;
         }
 

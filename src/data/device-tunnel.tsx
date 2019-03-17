@@ -10,7 +10,7 @@ export interface State {
 
 export default createProviderConsumer<State>({
         device: undefined,
-        services: {}
+        services: undefined
     },
     (subscribe, child) => (
         <context-consumer subscribe={subscribe} renderer={child} />

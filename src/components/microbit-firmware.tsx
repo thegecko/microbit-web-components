@@ -1,18 +1,11 @@
 import { Component, Prop, Element, State, Watch } from "@stencil/core";
 import { Services } from "microbit-web-bluetooth";
-import DeviceTunnel from '../../data/device-tunnel';
+import DeviceTunnel from '../data/device-tunnel';
 
 @Component({
-    tag: 'microbit-info-firmware',
-    styleUrl: 'microbit-info-firmware.css',
-    shadow: true
+    tag: 'microbit-firmware'
 })
-export class MicrobitInfo {
-    @Element() el;
-    @Prop() device: BluetoothDevice = undefined;
-    @Prop() services: Services = {};
-    @State() info: string = "";
-
+export class MicrobitFirmware {
     /**
      * The text shown when disconnected
      */
@@ -23,8 +16,17 @@ export class MicrobitInfo {
      */
     @Prop() noInfo: string = "No firmware info found";
 
+    @Element() el;
+    @Prop() services: Services = undefined;
+    @State() info: string = this.disconnectedText;
+
     @Watch('services')
     async watchHandler() {
+        if (!this.services) {
+            this.info = this.disconnectedText;
+            return;
+        }
+
         const service = this.services.deviceInformationService;
 
         if (!service) {
@@ -38,16 +40,9 @@ export class MicrobitInfo {
 
     render() {
         return (
-            <div>{this.getText()}</div>
+            <div>{this.info}</div>
         );
-    }
-
-    private getText() {
-        if (!this.device) {
-            return this.disconnectedText;
-        }
-        return this.info;
     }
 }
 
-DeviceTunnel.injectProps(MicrobitInfo, ['device', 'services']);
+DeviceTunnel.injectProps(MicrobitFirmware, ['services']);

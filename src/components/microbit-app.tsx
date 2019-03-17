@@ -8,7 +8,7 @@ import DeviceTunnel from '../data/device-tunnel';
 export class MicrobitApp {
 
     @State() device: BluetoothDevice = undefined;
-    @State() services: Services = {};
+    @State() services: Services = undefined;
 
     setDevice = (device: BluetoothDevice) => {
         this.device = device;
