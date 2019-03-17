@@ -19,13 +19,14 @@ Web Components library for micro:bit
 - [x] Serial Number
 
 ## State Class Wrappers
-- [ ] Connection State
-- [ ] Button State
+- [x] Connection State
+- [x] Button A State
+- [x] Button B State
 - [ ] IO Pin State
 
 ## Data
 - [x] Temperature
-- [ ] Compass
+- [x] Compass
 - [ ] Movement
 - [ ] Write IO
 

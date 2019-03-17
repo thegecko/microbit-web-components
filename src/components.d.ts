@@ -18,6 +18,13 @@ import {
 
 export namespace Components {
 
+  interface MicrobitCompass {
+    'services': Services;
+  }
+  interface MicrobitCompassAttributes extends StencilHTMLAttributes {
+    'services'?: Services;
+  }
+
   interface MicrobitTemperature {
     /**
     * The text shown when disconnected
@@ -233,10 +240,96 @@ export namespace Components {
     'setDeviceInformation'?: (deviceInformation: DeviceInformation) => void;
     'setServices'?: (services: Services) => void;
   }
+
+  interface MicrobitStateButtonA {
+    /**
+    * The css class to use when long-pressed
+    */
+    'longPressClass': string;
+    /**
+    * The css class to use when released
+    */
+    'releaseClass': string;
+    'services': Services;
+    /**
+    * The css class to use when short-pressed
+    */
+    'shortPressClass': string;
+  }
+  interface MicrobitStateButtonAAttributes extends StencilHTMLAttributes {
+    /**
+    * The css class to use when long-pressed
+    */
+    'longPressClass'?: string;
+    /**
+    * The css class to use when released
+    */
+    'releaseClass'?: string;
+    'services'?: Services;
+    /**
+    * The css class to use when short-pressed
+    */
+    'shortPressClass'?: string;
+  }
+
+  interface MicrobitStateButtonB {
+    /**
+    * The css class to use when long-pressed
+    */
+    'longPressClass': string;
+    /**
+    * The css class to use when released
+    */
+    'releaseClass': string;
+    'services': Services;
+    /**
+    * The css class to use when short-pressed
+    */
+    'shortPressClass': string;
+  }
+  interface MicrobitStateButtonBAttributes extends StencilHTMLAttributes {
+    /**
+    * The css class to use when long-pressed
+    */
+    'longPressClass'?: string;
+    /**
+    * The css class to use when released
+    */
+    'releaseClass'?: string;
+    'services'?: Services;
+    /**
+    * The css class to use when short-pressed
+    */
+    'shortPressClass'?: string;
+  }
+
+  interface MicrobitStateConnection {
+    /**
+    * The css class to use when connected
+    */
+    'connectedClass': string;
+    'device': BluetoothDevice;
+    /**
+    * The css class to use when disconnected
+    */
+    'disconnectedClass': string;
+  }
+  interface MicrobitStateConnectionAttributes extends StencilHTMLAttributes {
+    /**
+    * The css class to use when connected
+    */
+    'connectedClass'?: string;
+    'device'?: BluetoothDevice;
+    /**
+    * The css class to use when disconnected
+    */
+    'disconnectedClass'?: string;
+  }
 }
 
 declare global {
   interface StencilElementInterfaces {
+    'MicrobitCompass': Components.MicrobitCompass;
     'MicrobitTemperature': Components.MicrobitTemperature;
     'MicrobitFirmware': Components.MicrobitFirmware;
     'MicrobitHardware': Components.MicrobitHardware;
@@ -247,9 +340,13 @@ declare global {
     'MicrobitText': Components.MicrobitText;
     'MicrobitApp': Components.MicrobitApp;
     'MicrobitConnect': Components.MicrobitConnect;
+    'MicrobitStateButtonA': Components.MicrobitStateButtonA;
+    'MicrobitStateButtonB': Components.MicrobitStateButtonB;
+    'MicrobitStateConnection': Components.MicrobitStateConnection;
   }
 
   interface StencilIntrinsicElements {
+    'microbit-compass': Components.MicrobitCompassAttributes;
     'microbit-temperature': Components.MicrobitTemperatureAttributes;
     'microbit-firmware': Components.MicrobitFirmwareAttributes;
     'microbit-hardware': Components.MicrobitHardwareAttributes;
@@ -260,8 +357,17 @@ declare global {
     'microbit-text': Components.MicrobitTextAttributes;
     'microbit-app': Components.MicrobitAppAttributes;
     'microbit-connect': Components.MicrobitConnectAttributes;
+    'microbit-state-button-a': Components.MicrobitStateButtonAAttributes;
+    'microbit-state-button-b': Components.MicrobitStateButtonBAttributes;
+    'microbit-state-connection': Components.MicrobitStateConnectionAttributes;
   }
 
+
+  interface HTMLMicrobitCompassElement extends Components.MicrobitCompass, HTMLStencilElement {}
+  var HTMLMicrobitCompassElement: {
+    prototype: HTMLMicrobitCompassElement;
+    new (): HTMLMicrobitCompassElement;
+  };
 
   interface HTMLMicrobitTemperatureElement extends Components.MicrobitTemperature, HTMLStencilElement {}
   var HTMLMicrobitTemperatureElement: {
@@ -323,7 +429,26 @@ declare global {
     new (): HTMLMicrobitConnectElement;
   };
 
+  interface HTMLMicrobitStateButtonAElement extends Components.MicrobitStateButtonA, HTMLStencilElement {}
+  var HTMLMicrobitStateButtonAElement: {
+    prototype: HTMLMicrobitStateButtonAElement;
+    new (): HTMLMicrobitStateButtonAElement;
+  };
+
+  interface HTMLMicrobitStateButtonBElement extends Components.MicrobitStateButtonB, HTMLStencilElement {}
+  var HTMLMicrobitStateButtonBElement: {
+    prototype: HTMLMicrobitStateButtonBElement;
+    new (): HTMLMicrobitStateButtonBElement;
+  };
+
+  interface HTMLMicrobitStateConnectionElement extends Components.MicrobitStateConnection, HTMLStencilElement {}
+  var HTMLMicrobitStateConnectionElement: {
+    prototype: HTMLMicrobitStateConnectionElement;
+    new (): HTMLMicrobitStateConnectionElement;
+  };
+
   interface HTMLElementTagNameMap {
+    'microbit-compass': HTMLMicrobitCompassElement
     'microbit-temperature': HTMLMicrobitTemperatureElement
     'microbit-firmware': HTMLMicrobitFirmwareElement
     'microbit-hardware': HTMLMicrobitHardwareElement
@@ -334,9 +459,13 @@ declare global {
     'microbit-text': HTMLMicrobitTextElement
     'microbit-app': HTMLMicrobitAppElement
     'microbit-connect': HTMLMicrobitConnectElement
+    'microbit-state-button-a': HTMLMicrobitStateButtonAElement
+    'microbit-state-button-b': HTMLMicrobitStateButtonBElement
+    'microbit-state-connection': HTMLMicrobitStateConnectionElement
   }
 
   interface ElementTagNameMap {
+    'microbit-compass': HTMLMicrobitCompassElement;
     'microbit-temperature': HTMLMicrobitTemperatureElement;
     'microbit-firmware': HTMLMicrobitFirmwareElement;
     'microbit-hardware': HTMLMicrobitHardwareElement;
@@ -347,6 +476,9 @@ declare global {
     'microbit-text': HTMLMicrobitTextElement;
     'microbit-app': HTMLMicrobitAppElement;
     'microbit-connect': HTMLMicrobitConnectElement;
+    'microbit-state-button-a': HTMLMicrobitStateButtonAElement;
+    'microbit-state-button-b': HTMLMicrobitStateButtonBElement;
+    'microbit-state-connection': HTMLMicrobitStateConnectionElement;
   }
 
 
