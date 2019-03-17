@@ -14,12 +14,6 @@ export class MicrobitName {
     @Prop() disconnectedText: string = "Disconnected";
 
     render() {
-        return (
-            <div>{this.getText()}</div>
-        );
-    }
-
-    private getText(): string {
         return this.device ? this.device.name : this.disconnectedText;
     }
 }

@@ -12,7 +12,7 @@ export class MicrobitText {
     /**
      * The text shown on the button
      */
-    @Prop() buttonText: string = "Write";
+    @Prop() buttonLabel: string = "";
 
     /**
      * The speed to scroll the text
@@ -33,20 +33,37 @@ export class MicrobitText {
     }
 
     render() {
+        let button: JSX.Element;
+        
+        if (this.buttonLabel) {
+            button = <input
+                type="submit"
+                disabled={this.disabled}
+                value={this.buttonLabel}
+                onClick={() => this.writeText()}></input>;
+        }
+
         return (
-            <form onSubmit={e => this.handleSubmit(e)}>
-                <input type="input" disabled={this.disabled} maxLength={20} onChange={text => this.handleChange(text)}></input>
-                <input type="submit" disabled={this.disabled} value={this.buttonText}></input>
-            </form>
+            <span>
+                <input
+                    type="input"
+                    disabled={this.disabled}
+                    maxLength={20}
+                    onKeyPress={e => this.handleKeyPress(e)}></input>
+                {button}
+            </span>
         );
     }
 
-    private handleChange(event) {
-        this.text = event.target.value;
+    private handleKeyPress(event) {
+        if (event.keyCode == 13) {
+            this.writeText();
+        } else {
+            this.text = event.target.value;
+        }
     }
 
-    private handleSubmit(event) {
-        event.preventDefault();
+    private writeText() {
         this.services.ledService.writeText(this.text);
     }
 }

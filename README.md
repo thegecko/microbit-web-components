@@ -45,7 +45,3 @@ Web Components library for micro:bit
 
 ### Firmware
 - [ ] Update Firmware
-
-
-buttons disappear with no text
-remove form, enter chsnre too

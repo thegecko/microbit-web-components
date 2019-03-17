@@ -183,7 +183,7 @@ export namespace Components {
     /**
     * The text shown on the button
     */
-    'buttonText': string;
+    'buttonLabel': string;
     /**
     * The speed to scroll the text
     */
@@ -194,7 +194,7 @@ export namespace Components {
     /**
     * The text shown on the button
     */
-    'buttonText'?: string;
+    'buttonLabel'?: string;
     /**
     * The speed to scroll the text
     */
