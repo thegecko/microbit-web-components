@@ -39,6 +39,8 @@ export class MicrobitTemperature {
             return;
         }
 
+        const temperature = await service.readTemperature();
+        this.temperature = `${temperature}°c`;
         await service.setTemperaturePeriod(this.temperaturePeriod);
         service.addEventListener("temperaturechanged", temp => this.temperature = `${temp.detail}°c`);
     }

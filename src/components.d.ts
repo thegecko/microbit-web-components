@@ -325,6 +325,45 @@ export namespace Components {
     */
     'disconnectedClass'?: string;
   }
+
+  interface MicrobitStateMovement {
+    /**
+    * The frequency to read the sensor
+    */
+    'frequency': number;
+    /**
+    * The css class to use when moved
+    */
+    'movedClass': string;
+    /**
+    * The sensitivity of the sensor
+    */
+    'sensitivity': number;
+    'services': Services;
+    /**
+    * The css class to use when still
+    */
+    'stillClass': string;
+  }
+  interface MicrobitStateMovementAttributes extends StencilHTMLAttributes {
+    /**
+    * The frequency to read the sensor
+    */
+    'frequency'?: number;
+    /**
+    * The css class to use when moved
+    */
+    'movedClass'?: string;
+    /**
+    * The sensitivity of the sensor
+    */
+    'sensitivity'?: number;
+    'services'?: Services;
+    /**
+    * The css class to use when still
+    */
+    'stillClass'?: string;
+  }
 }
 
 declare global {
@@ -343,6 +382,7 @@ declare global {
     'MicrobitStateButtonA': Components.MicrobitStateButtonA;
     'MicrobitStateButtonB': Components.MicrobitStateButtonB;
     'MicrobitStateConnection': Components.MicrobitStateConnection;
+    'MicrobitStateMovement': Components.MicrobitStateMovement;
   }
 
   interface StencilIntrinsicElements {
@@ -360,6 +400,7 @@ declare global {
     'microbit-state-button-a': Components.MicrobitStateButtonAAttributes;
     'microbit-state-button-b': Components.MicrobitStateButtonBAttributes;
     'microbit-state-connection': Components.MicrobitStateConnectionAttributes;
+    'microbit-state-movement': Components.MicrobitStateMovementAttributes;
   }
 
 
@@ -447,6 +488,12 @@ declare global {
     new (): HTMLMicrobitStateConnectionElement;
   };
 
+  interface HTMLMicrobitStateMovementElement extends Components.MicrobitStateMovement, HTMLStencilElement {}
+  var HTMLMicrobitStateMovementElement: {
+    prototype: HTMLMicrobitStateMovementElement;
+    new (): HTMLMicrobitStateMovementElement;
+  };
+
   interface HTMLElementTagNameMap {
     'microbit-compass': HTMLMicrobitCompassElement
     'microbit-temperature': HTMLMicrobitTemperatureElement
@@ -462,6 +509,7 @@ declare global {
     'microbit-state-button-a': HTMLMicrobitStateButtonAElement
     'microbit-state-button-b': HTMLMicrobitStateButtonBElement
     'microbit-state-connection': HTMLMicrobitStateConnectionElement
+    'microbit-state-movement': HTMLMicrobitStateMovementElement
   }
 
   interface ElementTagNameMap {
@@ -479,6 +527,7 @@ declare global {
     'microbit-state-button-a': HTMLMicrobitStateButtonAElement;
     'microbit-state-button-b': HTMLMicrobitStateButtonBElement;
     'microbit-state-connection': HTMLMicrobitStateConnectionElement;
+    'microbit-state-movement': HTMLMicrobitStateMovementElement;
   }
 
 

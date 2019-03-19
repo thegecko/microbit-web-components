@@ -27,18 +27,16 @@ export class MicrobitStateButtonB {
     @State() className = this.releaseClass;
 
     @Watch('services')
-    watchHandler() {
+    async watchHandler() {
         if (!this.services || !this.services.buttonService) {
             this.className = this.releaseClass;
             return;
         }
 
         const service = this.services.buttonService;
-        service.addEventListener("buttonbstatechanged", event => {
-            this.className = event.detail === 1 ? this.shortPressClass
-                : event.detail === 2 ? this.longPressClass
-                : this.releaseClass;
-        });
+        const state = await service.readButtonBState();
+        this.setClassName(state);
+        service.addEventListener("buttonbstatechanged", event => this.setClassName(event.detail));
     }
 
     render() {
@@ -47,6 +45,12 @@ export class MicrobitStateButtonB {
                 <slot />
             </span>
         );
+    }
+
+    private setClassName(state: number) {
+        this.className = state === 1 ? this.shortPressClass
+        : state === 2 ? this.longPressClass
+        : this.releaseClass;
     }
 }
 

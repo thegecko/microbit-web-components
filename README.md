@@ -22,12 +22,12 @@ Web Components library for micro:bit
 - [x] Connection State
 - [x] Button A State
 - [x] Button B State
+- [x] Movement State
 - [ ] IO Pin State
 
 ## Data
 - [x] Temperature
 - [x] Compass
-- [ ] Movement
 - [ ] Write IO
 
 ## LEDs

@@ -3,11 +3,11 @@
 <head>
     <title>Microbit Web Components</title>
     <style>
-        .microbit-connected > .state {
-            background: yellowgreen;
-        }
         .microbit-disconnected > .state {
             background: lightcoral;
+        }
+        .microbit-connected > .state {
+            background: yellowgreen;
         }
         .microbit-release > .state {
             background: lightcoral;
@@ -16,6 +16,12 @@
             background: yellow;
         }
         .microbit-long-press > .state {
+            background: yellowgreen;
+        }
+        .microbit-still > .state {
+            background: lightcoral;
+        }
+        .microbit-moved > .state {
             background: yellowgreen;
         }
         #compass {
@@ -55,6 +61,11 @@
             <microbit-state-button-b>
                 <span class="state">Button B</span>
             </microbit-state-button-b>
+        </div>
+        <div>
+            <microbit-state-movement sensitivity="1.2">
+                <span class="state">Movement</span>
+            </microbit-state-movement>
         </div>
         <div>
             <microbit-compass>
