@@ -55,7 +55,6 @@ export class MicrobitStateMovement {
     }
 
     private setClassName(data: AccelerometerData) {
-        console.log(this.sensitivity);
         this.className = 
             (Math.abs(data.x) > this.sensitivity
             || Math.abs(data.y) > this.sensitivity

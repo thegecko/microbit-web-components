@@ -32,7 +32,7 @@ Web Components library for micro:bit
 
 ## LEDs
 - [x] Write Text
-- [ ] Read/Write LED Matrix
+- [x] Read/Write LED Matrix
 
 # Serial
 - [ ] Send Message

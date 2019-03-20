@@ -24,6 +24,28 @@
         .microbit-moved > .state {
             background: yellowgreen;
         }
+        .microbit-matrix {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-content: space-between;
+            width: 170px;
+            height: 170px;
+            background-color: black;
+        }
+        .microbit-matrix-led {
+            width: 9px;
+            height: 17px;
+            margin: 7px 11px;
+            border-radius: 2px;
+        }
+        .microbit-matrix-off {
+            background: #333;
+        }
+        .microbit-matrix-on {
+            background: #f88;
+            box-shadow: 0 0 8px 2px #ff1777;
+        }
         #compass {
             width: 50px;
             height: 50px;
@@ -67,6 +89,33 @@
                 <span class="state">Movement</span>
             </microbit-state-movement>
         </div>
+        <microbit-matrix class="microbit-matrix" id-template="matrix-${row}-${column}">
+            <div id="matrix-0-0" class="microbit-matrix-led"></div>
+            <div id="matrix-0-1" class="microbit-matrix-led"></div>
+            <div id="matrix-0-2" class="microbit-matrix-led"></div>
+            <div id="matrix-0-3" class="microbit-matrix-led"></div>
+            <div id="matrix-0-4" class="microbit-matrix-led"></div>
+            <div id="matrix-1-0" class="microbit-matrix-led"></div>
+            <div id="matrix-1-1" class="microbit-matrix-led"></div>
+            <div id="matrix-1-2" class="microbit-matrix-led"></div>
+            <div id="matrix-1-3" class="microbit-matrix-led"></div>
+            <div id="matrix-1-4" class="microbit-matrix-led"></div>
+            <div id="matrix-2-0" class="microbit-matrix-led"></div>
+            <div id="matrix-2-1" class="microbit-matrix-led"></div>
+            <div id="matrix-2-2" class="microbit-matrix-led"></div>
+            <div id="matrix-2-3" class="microbit-matrix-led"></div>
+            <div id="matrix-2-4" class="microbit-matrix-led"></div>
+            <div id="matrix-3-0" class="microbit-matrix-led"></div>
+            <div id="matrix-3-1" class="microbit-matrix-led"></div>
+            <div id="matrix-3-2" class="microbit-matrix-led"></div>
+            <div id="matrix-3-3" class="microbit-matrix-led"></div>
+            <div id="matrix-3-4" class="microbit-matrix-led"></div>
+            <div id="matrix-4-0" class="microbit-matrix-led"></div>
+            <div id="matrix-4-1" class="microbit-matrix-led"></div>
+            <div id="matrix-4-2" class="microbit-matrix-led"></div>
+            <div id="matrix-4-3" class="microbit-matrix-led"></div>
+            <div id="matrix-4-4" class="microbit-matrix-led"></div>
+        </microbit-matrix>
         <div>
             <microbit-compass>
                 <div id="compass"></div>

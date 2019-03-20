@@ -186,6 +186,37 @@ export namespace Components {
     'noInfo'?: string;
   }
 
+  interface MicrobitMatrix {
+    /**
+    * The template for identifying child LEDs
+    */
+    'idTemplate': string;
+    /**
+    * The css class for off LEDs
+    */
+    'offClass': string;
+    /**
+    * The css class for on LEDs
+    */
+    'onClass': string;
+    'services': Services;
+  }
+  interface MicrobitMatrixAttributes extends StencilHTMLAttributes {
+    /**
+    * The template for identifying child LEDs
+    */
+    'idTemplate'?: string;
+    /**
+    * The css class for off LEDs
+    */
+    'offClass'?: string;
+    /**
+    * The css class for on LEDs
+    */
+    'onClass'?: string;
+    'services'?: Services;
+  }
+
   interface MicrobitText {
     /**
     * The text shown on the button
@@ -376,6 +407,7 @@ declare global {
     'MicrobitModel': Components.MicrobitModel;
     'MicrobitName': Components.MicrobitName;
     'MicrobitSerial': Components.MicrobitSerial;
+    'MicrobitMatrix': Components.MicrobitMatrix;
     'MicrobitText': Components.MicrobitText;
     'MicrobitApp': Components.MicrobitApp;
     'MicrobitConnect': Components.MicrobitConnect;
@@ -394,6 +426,7 @@ declare global {
     'microbit-model': Components.MicrobitModelAttributes;
     'microbit-name': Components.MicrobitNameAttributes;
     'microbit-serial': Components.MicrobitSerialAttributes;
+    'microbit-matrix': Components.MicrobitMatrixAttributes;
     'microbit-text': Components.MicrobitTextAttributes;
     'microbit-app': Components.MicrobitAppAttributes;
     'microbit-connect': Components.MicrobitConnectAttributes;
@@ -452,6 +485,12 @@ declare global {
     new (): HTMLMicrobitSerialElement;
   };
 
+  interface HTMLMicrobitMatrixElement extends Components.MicrobitMatrix, HTMLStencilElement {}
+  var HTMLMicrobitMatrixElement: {
+    prototype: HTMLMicrobitMatrixElement;
+    new (): HTMLMicrobitMatrixElement;
+  };
+
   interface HTMLMicrobitTextElement extends Components.MicrobitText, HTMLStencilElement {}
   var HTMLMicrobitTextElement: {
     prototype: HTMLMicrobitTextElement;
@@ -503,6 +542,7 @@ declare global {
     'microbit-model': HTMLMicrobitModelElement
     'microbit-name': HTMLMicrobitNameElement
     'microbit-serial': HTMLMicrobitSerialElement
+    'microbit-matrix': HTMLMicrobitMatrixElement
     'microbit-text': HTMLMicrobitTextElement
     'microbit-app': HTMLMicrobitAppElement
     'microbit-connect': HTMLMicrobitConnectElement
@@ -521,6 +561,7 @@ declare global {
     'microbit-model': HTMLMicrobitModelElement;
     'microbit-name': HTMLMicrobitNameElement;
     'microbit-serial': HTMLMicrobitSerialElement;
+    'microbit-matrix': HTMLMicrobitMatrixElement;
     'microbit-text': HTMLMicrobitTextElement;
     'microbit-app': HTMLMicrobitAppElement;
     'microbit-connect': HTMLMicrobitConnectElement;

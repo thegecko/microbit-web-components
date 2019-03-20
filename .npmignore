@@ -1,0 +1,8 @@
+.DS_Store
+.stencil
+.vscode
+node_modules
+.gitignore
+circle.yml
+index.html
+npm-debug.log
