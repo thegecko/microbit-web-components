@@ -65,10 +65,10 @@ export class MicrobitMatrix {
     private async toggle(row: number, column: number) {
         this.matrix[row][column] = !this.matrix[row][column];
         await this.services.ledService.setMatrixState(this.matrix);
-        await this.updateMatrix();
+        this.updateMatrix();
     }
 
-    private async updateMatrix() {
+    private updateMatrix() {
         this.matrix.forEach((rows: Boolean[], row) => {
             rows.forEach((value: boolean, column) => {
                 const led = this.elements[row][column];

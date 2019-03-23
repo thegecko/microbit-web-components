@@ -63,8 +63,8 @@ export class MicrobitText {
         }
     }
 
-    private writeText() {
-        this.services.ledService.writeText(this.text);
+    private async writeText() {
+        await this.services.ledService.writeText(this.text);
     }
 }
 

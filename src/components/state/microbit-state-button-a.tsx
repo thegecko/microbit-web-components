@@ -36,7 +36,7 @@ export class MicrobitStateButtonA {
         const service = this.services.buttonService;
         const state = await service.readButtonAState();
         this.setClassName(state);
-        service.addEventListener("buttonastatechanged", event => this.setClassName(event.detail));
+        await service.addEventListener("buttonastatechanged", event => this.setClassName(event.detail));
     }
 
     render() {
