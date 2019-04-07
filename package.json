@@ -35,6 +35,6 @@
     "@joseph184/rollup-plugin-node-builtins": "2.1.4",
     "@stencil/core": "^0.18.1",
     "@stencil/state-tunnel": "0.0.8",
-    "microbit-web-bluetooth": "^0.1.2"
+    "microbit-web-bluetooth": "^0.1.3"
   }
 }

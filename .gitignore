@@ -4,3 +4,4 @@
 dist
 node_modules
 www
+src/**/readme.md
