@@ -7,8 +7,9 @@ Web Components library for micro:bit
 
 # Implementation Status
 
-## Connection
+## Actions
 - [x] Connect/Disconnect
+- [ ] Calibrate Compass
 
 ## Device Information
 - [x] Name

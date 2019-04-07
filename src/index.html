@@ -3,6 +3,9 @@
 <head>
     <title>Microbit Web Components</title>
     <style>
+        microbit-app > * {
+            display: block;
+        }
         .microbit-disconnected > .state {
             background: lightcoral;
         }
@@ -57,35 +60,27 @@
 
 <body>
     <microbit-app>
-        <div><microbit-connect></microbit-connect></div>
-        <div><microbit-name></microbit-name></div>
-        <div><microbit-manufacturer></microbit-manufacturer></div>
-        <div><microbit-model></microbit-model></div>
-        <div><microbit-serial></microbit-serial></div>
-        <div><microbit-firmware></microbit-firmware></div>
-        <div><microbit-hardware></microbit-hardware></div>
-        <div><microbit-temperature></microbit-temperature></div>
-        <div><microbit-text button-label="Write"></microbit-text></div>
-        <div>
-            <microbit-state-connection>
-                <span class="state">Connected</span>
-            </microbit-state-connection>
-        </div>
-        <div>
-            <microbit-state-button-a>
-                <span class="state">Button A</span>
-            </microbit-state-button-a>
-        </div>
-        <div>
-            <microbit-state-button-b>
-                <span class="state">Button B</span>
-            </microbit-state-button-b>
-        </div>
-        <div>
-            <microbit-state-movement sensitivity="1.2">
-                <span class="state">Movement</span>
-            </microbit-state-movement>
-        </div>
+        <microbit-connect></microbit-connect>
+        <microbit-name></microbit-name>
+        <microbit-manufacturer></microbit-manufacturer>
+        <microbit-model></microbit-model>
+        <microbit-serial></microbit-serial>
+        <microbit-firmware></microbit-firmware>
+        <microbit-hardware></microbit-hardware>
+        <microbit-temperature></microbit-temperature>
+        <microbit-text button-label="Write"></microbit-text>
+        <microbit-state-connection>
+            <span class="state">Connected</span>
+        </microbit-state-connection>
+        <microbit-state-button-a>
+            <span class="state">Button A</span>
+        </microbit-state-button-a>
+        <microbit-state-button-b>
+            <span class="state">Button B</span>
+        </microbit-state-button-b>
+        <microbit-state-movement sensitivity="1.2">
+            <span class="state">Movement</span>
+        </microbit-state-movement>
         <microbit-matrix class="microbit-matrix" id-template="matrix-${row}-${column}">
             <div id="matrix-0-0" class="microbit-matrix-led"></div>
             <div id="matrix-0-1" class="microbit-matrix-led"></div>
@@ -113,11 +108,10 @@
             <div id="matrix-4-3" class="microbit-matrix-led"></div>
             <div id="matrix-4-4" class="microbit-matrix-led"></div>
         </microbit-matrix>
-        <div>
-            <microbit-compass>
-                <div id="compass"></div>
-            </microbit-compass>
-        </div>
+        <microbit-calibrate></microbit-calibrate>
+        <microbit-compass>
+            <div id="compass"></div>
+        </microbit-compass>
     </microbit-app>
 </body>
 

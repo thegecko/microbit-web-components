@@ -243,6 +243,21 @@ export namespace Components {
   interface MicrobitApp {}
   interface MicrobitAppAttributes extends StencilHTMLAttributes {}
 
+  interface MicrobitCalibrate {
+    /**
+    * The button label to calibrate
+    */
+    'calibrateLabel': string;
+    'services': Services;
+  }
+  interface MicrobitCalibrateAttributes extends StencilHTMLAttributes {
+    /**
+    * The button label to calibrate
+    */
+    'calibrateLabel'?: string;
+    'services'?: Services;
+  }
+
   interface MicrobitConnect {
     /**
     * The button label to connect
@@ -410,6 +425,7 @@ declare global {
     'MicrobitMatrix': Components.MicrobitMatrix;
     'MicrobitText': Components.MicrobitText;
     'MicrobitApp': Components.MicrobitApp;
+    'MicrobitCalibrate': Components.MicrobitCalibrate;
     'MicrobitConnect': Components.MicrobitConnect;
     'MicrobitStateButtonA': Components.MicrobitStateButtonA;
     'MicrobitStateButtonB': Components.MicrobitStateButtonB;
@@ -429,6 +445,7 @@ declare global {
     'microbit-matrix': Components.MicrobitMatrixAttributes;
     'microbit-text': Components.MicrobitTextAttributes;
     'microbit-app': Components.MicrobitAppAttributes;
+    'microbit-calibrate': Components.MicrobitCalibrateAttributes;
     'microbit-connect': Components.MicrobitConnectAttributes;
     'microbit-state-button-a': Components.MicrobitStateButtonAAttributes;
     'microbit-state-button-b': Components.MicrobitStateButtonBAttributes;
@@ -503,6 +520,12 @@ declare global {
     new (): HTMLMicrobitAppElement;
   };
 
+  interface HTMLMicrobitCalibrateElement extends Components.MicrobitCalibrate, HTMLStencilElement {}
+  var HTMLMicrobitCalibrateElement: {
+    prototype: HTMLMicrobitCalibrateElement;
+    new (): HTMLMicrobitCalibrateElement;
+  };
+
   interface HTMLMicrobitConnectElement extends Components.MicrobitConnect, HTMLStencilElement {}
   var HTMLMicrobitConnectElement: {
     prototype: HTMLMicrobitConnectElement;
@@ -545,6 +568,7 @@ declare global {
     'microbit-matrix': HTMLMicrobitMatrixElement
     'microbit-text': HTMLMicrobitTextElement
     'microbit-app': HTMLMicrobitAppElement
+    'microbit-calibrate': HTMLMicrobitCalibrateElement
     'microbit-connect': HTMLMicrobitConnectElement
     'microbit-state-button-a': HTMLMicrobitStateButtonAElement
     'microbit-state-button-b': HTMLMicrobitStateButtonBElement
@@ -564,6 +588,7 @@ declare global {
     'microbit-matrix': HTMLMicrobitMatrixElement;
     'microbit-text': HTMLMicrobitTextElement;
     'microbit-app': HTMLMicrobitAppElement;
+    'microbit-calibrate': HTMLMicrobitCalibrateElement;
     'microbit-connect': HTMLMicrobitConnectElement;
     'microbit-state-button-a': HTMLMicrobitStateButtonAElement;
     'microbit-state-button-b': HTMLMicrobitStateButtonBElement;
