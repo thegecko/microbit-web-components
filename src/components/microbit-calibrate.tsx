@@ -28,11 +28,9 @@ export class MicrobitCalibrate {
     }
 
     private async calibrate() {
-        /*
         if (this.services.magnetometerService) {
-            this.services.magnetometerService.
+            this.services.magnetometerService.calibrate();
         }
-        */
     }
 }
 
