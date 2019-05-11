@@ -1,6 +1,5 @@
 .DS_Store
 .stencil
-.vscode
 dist
 node_modules
 www
