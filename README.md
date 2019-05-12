@@ -9,7 +9,7 @@ Web Components library for micro:bit
 
 ## Actions
 - [x] Connect/Disconnect
-- [ ] Calibrate Compass
+- [x] Calibrate Compass
 
 ## Device Information
 - [x] Name
