@@ -36,8 +36,8 @@ Web Components library for micro:bit
 - [x] Read/Write LED Matrix
 
 # Serial
-- [ ] Send Message
-- [ ] Receive Message
+- [x] Send Message
+- [x] Receive Message
 
 ### Events
 - [ ] Send Event

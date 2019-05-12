@@ -3,9 +3,9 @@ import { Services } from "microbit-web-bluetooth";
 import DeviceTunnel from '../../device-tunnel';
 
 @Component({
-    tag: 'microbit-text'
+    tag: 'microbit-send'
 })
-export class MicrobitText {
+export class MicrobitSend {
     @Element() el;
     @Prop() services: Services = undefined;
 
@@ -15,9 +15,9 @@ export class MicrobitText {
     @Prop() buttonLabel: string = "";
 
     /**
-     * The speed to scroll the text
+     * The delimiter to use
      */
-    @Prop() scrollDelay: number = 100;
+    @Prop() delimiter: string = "";
 
     @State() disabled = true;
 
@@ -25,11 +25,7 @@ export class MicrobitText {
 
     @Watch('services')
     async watchHandler() {
-        this.disabled = !this.services || !this.services.ledService;
-
-        if (this.services && this.services.ledService) {
-            await this.services.ledService.setScrollingDelay(this.scrollDelay);
-        }
+        this.disabled = !this.services || !this.services.uartService;
     }
 
     render() {
@@ -40,7 +36,7 @@ export class MicrobitText {
                 type="submit"
                 disabled={this.disabled}
                 value={this.buttonLabel}
-                onClick={() => this.writeText()}></input>;
+                onClick={() => this.sendText()}></input>;
         }
 
         return (
@@ -57,15 +53,16 @@ export class MicrobitText {
 
     private handleKey(event) {
         if (event.keyCode == 13) {
-            this.writeText();
+            this.sendText();
         } else {
             this.text = event.target.value;
         }
     }
 
-    private async writeText() {
-        await this.services.ledService.writeText(this.text);
+    private async sendText() {
+        const text = `${this.text}${this.delimiter}`;
+        await this.services.uartService.sendString(text);
     }
 }
 
-DeviceTunnel.injectProps(MicrobitText, ['services']);
+DeviceTunnel.injectProps(MicrobitSend, ['services']);

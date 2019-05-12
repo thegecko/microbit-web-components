@@ -287,6 +287,36 @@ export namespace Components {
     'setServices'?: (services: Services) => void;
   }
 
+  interface MicrobitReceive {
+    'services': Services;
+  }
+  interface MicrobitReceiveAttributes extends StencilHTMLAttributes {
+    'services'?: Services;
+  }
+
+  interface MicrobitSend {
+    /**
+    * The text shown on the button
+    */
+    'buttonLabel': string;
+    /**
+    * The delimiter to use
+    */
+    'delimiter': string;
+    'services': Services;
+  }
+  interface MicrobitSendAttributes extends StencilHTMLAttributes {
+    /**
+    * The text shown on the button
+    */
+    'buttonLabel'?: string;
+    /**
+    * The delimiter to use
+    */
+    'delimiter'?: string;
+    'services'?: Services;
+  }
+
   interface MicrobitStateButtonA {
     /**
     * The css class to use when long-pressed
@@ -427,6 +457,8 @@ declare global {
     'MicrobitApp': Components.MicrobitApp;
     'MicrobitCalibrate': Components.MicrobitCalibrate;
     'MicrobitConnect': Components.MicrobitConnect;
+    'MicrobitReceive': Components.MicrobitReceive;
+    'MicrobitSend': Components.MicrobitSend;
     'MicrobitStateButtonA': Components.MicrobitStateButtonA;
     'MicrobitStateButtonB': Components.MicrobitStateButtonB;
     'MicrobitStateConnection': Components.MicrobitStateConnection;
@@ -447,6 +479,8 @@ declare global {
     'microbit-app': Components.MicrobitAppAttributes;
     'microbit-calibrate': Components.MicrobitCalibrateAttributes;
     'microbit-connect': Components.MicrobitConnectAttributes;
+    'microbit-receive': Components.MicrobitReceiveAttributes;
+    'microbit-send': Components.MicrobitSendAttributes;
     'microbit-state-button-a': Components.MicrobitStateButtonAAttributes;
     'microbit-state-button-b': Components.MicrobitStateButtonBAttributes;
     'microbit-state-connection': Components.MicrobitStateConnectionAttributes;
@@ -532,6 +566,18 @@ declare global {
     new (): HTMLMicrobitConnectElement;
   };
 
+  interface HTMLMicrobitReceiveElement extends Components.MicrobitReceive, HTMLStencilElement {}
+  var HTMLMicrobitReceiveElement: {
+    prototype: HTMLMicrobitReceiveElement;
+    new (): HTMLMicrobitReceiveElement;
+  };
+
+  interface HTMLMicrobitSendElement extends Components.MicrobitSend, HTMLStencilElement {}
+  var HTMLMicrobitSendElement: {
+    prototype: HTMLMicrobitSendElement;
+    new (): HTMLMicrobitSendElement;
+  };
+
   interface HTMLMicrobitStateButtonAElement extends Components.MicrobitStateButtonA, HTMLStencilElement {}
   var HTMLMicrobitStateButtonAElement: {
     prototype: HTMLMicrobitStateButtonAElement;
@@ -570,6 +616,8 @@ declare global {
     'microbit-app': HTMLMicrobitAppElement
     'microbit-calibrate': HTMLMicrobitCalibrateElement
     'microbit-connect': HTMLMicrobitConnectElement
+    'microbit-receive': HTMLMicrobitReceiveElement
+    'microbit-send': HTMLMicrobitSendElement
     'microbit-state-button-a': HTMLMicrobitStateButtonAElement
     'microbit-state-button-b': HTMLMicrobitStateButtonBElement
     'microbit-state-connection': HTMLMicrobitStateConnectionElement
@@ -590,6 +638,8 @@ declare global {
     'microbit-app': HTMLMicrobitAppElement;
     'microbit-calibrate': HTMLMicrobitCalibrateElement;
     'microbit-connect': HTMLMicrobitConnectElement;
+    'microbit-receive': HTMLMicrobitReceiveElement;
+    'microbit-send': HTMLMicrobitSendElement;
     'microbit-state-button-a': HTMLMicrobitStateButtonAElement;
     'microbit-state-button-b': HTMLMicrobitStateButtonBElement;
     'microbit-state-connection': HTMLMicrobitStateConnectionElement;
