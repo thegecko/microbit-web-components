@@ -61,7 +61,7 @@ export class MicrobitSend {
 
     private async sendText() {
         const text = `${this.text}${this.delimiter}`;
-        await this.services.uartService.sendString(text);
+        await this.services.uartService.sendText(text);
     }
 }
 

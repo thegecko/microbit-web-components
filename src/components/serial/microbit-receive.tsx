@@ -23,7 +23,7 @@ export class MicrobitReceive {
             return;
         }
 
-        await service.addEventListener("receiveString", event => this.data += event.detail);
+        await service.addEventListener("receiveText", event => this.data += event.detail);
     }
 
     render() {

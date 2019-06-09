@@ -58,13 +58,13 @@ export class MicrobitMatrix {
             return;
         }
 
-        this.matrix = await this.services.ledService.getMatrixState();
+        this.matrix = await this.services.ledService.readMatrixState();
         await this.updateMatrix();
     }
 
     private async toggle(row: number, column: number) {
         this.matrix[row][column] = !this.matrix[row][column];
-        await this.services.ledService.setMatrixState(this.matrix);
+        await this.services.ledService.writeMatrixState(this.matrix);
         this.updateMatrix();
     }
 
