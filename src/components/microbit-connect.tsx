@@ -53,6 +53,7 @@ export class MicrobitConnect {
                 const deviceInformation = await services.deviceInformationService.readDeviceInformation();
                 this.setDeviceInformation(deviceInformation);
             }
+            device.addEventListener("gattserverdisconnected", this.connectDisconnect.bind(this));
         }
     }
 }
