@@ -6,10 +6,6 @@ import { microbitStore } from '../microbit-store';
     tag: 'microbit-connect'
 })
 export class MicrobitConnect {
-    constructor() {
-        microbitStore.addListener(this);
-    }
-
     @Element() el;
     @Prop({mutable: true}) device: BluetoothDevice = null;
 
@@ -38,12 +34,14 @@ export class MicrobitConnect {
             if (this.device.gatt.connected) {
                 await this.device.gatt.disconnect();
             }
+            this.device = null;
             microbitStore.empty();
             return;
         }
 
         const device = await requestMicrobit(window.navigator.bluetooth);
         if (device) {
+            this.device = device;
             microbitStore.update("device", device);
             const services = await getServices(device);
             microbitStore.update("services", services);
