@@ -1,4 +1,4 @@
-import { h, Component, Prop, Element } from "@stencil/core";
+import { Component, Prop, Element } from "@stencil/core";
 import { requestMicrobit, getServices } from "microbit-web-bluetooth";
 import { microbitStore } from '../microbit-store';
 
@@ -11,7 +11,7 @@ export class MicrobitConnect {
     }
 
     @Element() el;
-    @Prop() device: BluetoothDevice = null;
+    @Prop({mutable: true}) device: BluetoothDevice = null;
 
     /**
      * The button label to connect

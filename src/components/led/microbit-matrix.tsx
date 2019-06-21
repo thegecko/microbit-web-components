@@ -21,7 +21,7 @@ export class MicrobitMatrix {
     }
 
     @Element() el;
-    @Prop() services: Services = null;
+    @Prop({mutable: true}) services: Services = null;
 
     /**
      * The template for identifying child LEDs

@@ -1,4 +1,4 @@
-import { h, Component, Prop, Element, Watch, State } from "@stencil/core";
+import { Component, Prop, Element, Watch, State } from "@stencil/core";
 import { Services } from "microbit-web-bluetooth";
 import { AccelerometerPeriod, AccelerometerData } from "microbit-web-bluetooth/types/services/accelerometer";
 import { microbitStore } from '../../microbit-store';
@@ -12,7 +12,7 @@ export class MicrobitStateMovement {
     }
 
     @Element() el;
-    @Prop() services: Services = null;
+    @Prop({mutable: true}) services: Services = null;
 
     /**
      * The sensitivity of the sensor

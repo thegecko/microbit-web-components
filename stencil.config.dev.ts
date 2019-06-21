@@ -4,7 +4,7 @@ export const config: Config = {
     namespace: 'microbit',
     outputTargets: [
         { type: 'dist' },
-        { type: 'docs-readme' },
+        { type: 'docs' },
         {
             type: 'www',
             serviceWorker: null

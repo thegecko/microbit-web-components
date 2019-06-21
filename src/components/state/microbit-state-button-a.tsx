@@ -1,4 +1,4 @@
-import { h, Component, Prop, Element, Watch, State } from "@stencil/core";
+import { Component, Prop, Element, Watch, State } from "@stencil/core";
 import { Services } from "microbit-web-bluetooth";
 import { microbitStore } from '../../microbit-store';
 
@@ -11,7 +11,7 @@ export class MicrobitStateButtonA {
     }
 
     @Element() el;
-    @Prop() services: Services = null;
+    @Prop({mutable: true}) services: Services = null;
 
     /**
      * The css class to use when released

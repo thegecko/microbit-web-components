@@ -11,7 +11,7 @@ export class MicrobitModel {
     }
 
     @Element() el;
-    @Prop() deviceInformation: DeviceInformation = null;
+    @Prop({mutable: true}) deviceInformation: DeviceInformation = null;
 
     /**
      * The text shown when disconnected

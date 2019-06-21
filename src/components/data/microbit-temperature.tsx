@@ -11,7 +11,7 @@ export class MicrobitTemperature {
     }
 
     @Element() el;
-    @Prop() services: Services = null;
+    @Prop({mutable: true}) services: Services = null;
 
     /**
      * The interval to check the temperature (ms)

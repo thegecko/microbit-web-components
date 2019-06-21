@@ -5,7 +5,9 @@
  */
 
 
-import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
+import '@stencil/core';
+
+
 import {
   Services,
 } from 'microbit-web-bluetooth';
@@ -13,28 +15,47 @@ import {
   DeviceInformation,
 } from 'microbit-web-bluetooth/types/services/device-information';
 
+
 export namespace Components {
-  interface MicrobitCalibrate {
-    /**
-    * The button label to calibrate
-    */
-    'calibrateLabel': string;
-    'services': Services;
-  }
+
   interface MicrobitCompass {
     'services': Services;
   }
-  interface MicrobitConnect {
-    /**
-    * The button label to connect
-    */
-    'connectLabel': string;
-    'device': BluetoothDevice;
-    /**
-    * The button label to disconnect
-    */
-    'disconnectLabel': string;
+  interface MicrobitCompassAttributes extends StencilHTMLAttributes {
+    'services'?: Services;
   }
+
+  interface MicrobitTemperature {
+    /**
+    * The text shown when disconnected
+    */
+    'disconnectedText': string;
+    /**
+    * The text shown when no temperature
+    */
+    'noTemperature': string;
+    'services': Services;
+    /**
+    * The interval to check the temperature (ms)
+    */
+    'temperaturePeriod': number;
+  }
+  interface MicrobitTemperatureAttributes extends StencilHTMLAttributes {
+    /**
+    * The text shown when disconnected
+    */
+    'disconnectedText'?: string;
+    /**
+    * The text shown when no temperature
+    */
+    'noTemperature'?: string;
+    'services'?: Services;
+    /**
+    * The interval to check the temperature (ms)
+    */
+    'temperaturePeriod'?: number;
+  }
+
   interface MicrobitFirmware {
     'deviceInformation': DeviceInformation;
     /**
@@ -46,6 +67,18 @@ export namespace Components {
     */
     'noInfo': string;
   }
+  interface MicrobitFirmwareAttributes extends StencilHTMLAttributes {
+    'deviceInformation'?: DeviceInformation;
+    /**
+    * The text shown when disconnected
+    */
+    'disconnectedText'?: string;
+    /**
+    * The text shown when no firmware version
+    */
+    'noInfo'?: string;
+  }
+
   interface MicrobitHardware {
     'deviceInformation': DeviceInformation;
     /**
@@ -57,6 +90,18 @@ export namespace Components {
     */
     'noInfo': string;
   }
+  interface MicrobitHardwareAttributes extends StencilHTMLAttributes {
+    'deviceInformation'?: DeviceInformation;
+    /**
+    * The text shown when disconnected
+    */
+    'disconnectedText'?: string;
+    /**
+    * The text shown when no hardware version
+    */
+    'noInfo'?: string;
+  }
+
   interface MicrobitManufacturer {
     'deviceInformation': DeviceInformation;
     /**
@@ -68,6 +113,79 @@ export namespace Components {
     */
     'noInfo': string;
   }
+  interface MicrobitManufacturerAttributes extends StencilHTMLAttributes {
+    'deviceInformation'?: DeviceInformation;
+    /**
+    * The text shown when disconnected
+    */
+    'disconnectedText'?: string;
+    /**
+    * The text shown when no manufacturer name
+    */
+    'noInfo'?: string;
+  }
+
+  interface MicrobitModel {
+    'deviceInformation': DeviceInformation;
+    /**
+    * The text shown when disconnected
+    */
+    'disconnectedText': string;
+    /**
+    * The text shown when no model number
+    */
+    'noInfo': string;
+  }
+  interface MicrobitModelAttributes extends StencilHTMLAttributes {
+    'deviceInformation'?: DeviceInformation;
+    /**
+    * The text shown when disconnected
+    */
+    'disconnectedText'?: string;
+    /**
+    * The text shown when no model number
+    */
+    'noInfo'?: string;
+  }
+
+  interface MicrobitName {
+    'device': BluetoothDevice;
+    /**
+    * The text shown when disconnected
+    */
+    'disconnectedText': string;
+  }
+  interface MicrobitNameAttributes extends StencilHTMLAttributes {
+    'device'?: BluetoothDevice;
+    /**
+    * The text shown when disconnected
+    */
+    'disconnectedText'?: string;
+  }
+
+  interface MicrobitSerial {
+    'deviceInformation': DeviceInformation;
+    /**
+    * The text shown when disconnected
+    */
+    'disconnectedText': string;
+    /**
+    * The text shown when no serial number
+    */
+    'noInfo': string;
+  }
+  interface MicrobitSerialAttributes extends StencilHTMLAttributes {
+    'deviceInformation'?: DeviceInformation;
+    /**
+    * The text shown when disconnected
+    */
+    'disconnectedText'?: string;
+    /**
+    * The text shown when no serial number
+    */
+    'noInfo'?: string;
+  }
+
   interface MicrobitMatrix {
     /**
     * The template for identifying child LEDs
@@ -83,27 +201,90 @@ export namespace Components {
     'onClass': string;
     'services': Services;
   }
-  interface MicrobitModel {
-    'deviceInformation': DeviceInformation;
+  interface MicrobitMatrixAttributes extends StencilHTMLAttributes {
     /**
-    * The text shown when disconnected
+    * The template for identifying child LEDs
     */
-    'disconnectedText': string;
+    'idTemplate'?: string;
     /**
-    * The text shown when no model number
+    * The css class for off LEDs
     */
-    'noInfo': string;
+    'offClass'?: string;
+    /**
+    * The css class for on LEDs
+    */
+    'onClass'?: string;
+    'services'?: Services;
   }
-  interface MicrobitName {
+
+  interface MicrobitText {
+    /**
+    * The text shown on the button
+    */
+    'buttonLabel': string;
+    /**
+    * The speed to scroll the text
+    */
+    'scrollDelay': number;
+    'services': Services;
+  }
+  interface MicrobitTextAttributes extends StencilHTMLAttributes {
+    /**
+    * The text shown on the button
+    */
+    'buttonLabel'?: string;
+    /**
+    * The speed to scroll the text
+    */
+    'scrollDelay'?: number;
+    'services'?: Services;
+  }
+
+  interface MicrobitCalibrate {
+    /**
+    * The button label to calibrate
+    */
+    'calibrateLabel': string;
+    'services': Services;
+  }
+  interface MicrobitCalibrateAttributes extends StencilHTMLAttributes {
+    /**
+    * The button label to calibrate
+    */
+    'calibrateLabel'?: string;
+    'services'?: Services;
+  }
+
+  interface MicrobitConnect {
+    /**
+    * The button label to connect
+    */
+    'connectLabel': string;
     'device': BluetoothDevice;
     /**
-    * The text shown when disconnected
+    * The button label to disconnect
     */
-    'disconnectedText': string;
+    'disconnectLabel': string;
   }
+  interface MicrobitConnectAttributes extends StencilHTMLAttributes {
+    /**
+    * The button label to connect
+    */
+    'connectLabel'?: string;
+    'device'?: BluetoothDevice;
+    /**
+    * The button label to disconnect
+    */
+    'disconnectLabel'?: string;
+  }
+
   interface MicrobitReceive {
     'services': Services;
   }
+  interface MicrobitReceiveAttributes extends StencilHTMLAttributes {
+    'services'?: Services;
+  }
+
   interface MicrobitSend {
     /**
     * The text shown on the button
@@ -115,17 +296,18 @@ export namespace Components {
     'delimiter': string;
     'services': Services;
   }
-  interface MicrobitSerial {
-    'deviceInformation': DeviceInformation;
+  interface MicrobitSendAttributes extends StencilHTMLAttributes {
     /**
-    * The text shown when disconnected
+    * The text shown on the button
     */
-    'disconnectedText': string;
+    'buttonLabel'?: string;
     /**
-    * The text shown when no serial number
+    * The delimiter to use
     */
-    'noInfo': string;
+    'delimiter'?: string;
+    'services'?: Services;
   }
+
   interface MicrobitStateButtonA {
     /**
     * The css class to use when long-pressed
@@ -141,6 +323,22 @@ export namespace Components {
     */
     'shortPressClass': string;
   }
+  interface MicrobitStateButtonAAttributes extends StencilHTMLAttributes {
+    /**
+    * The css class to use when long-pressed
+    */
+    'longPressClass'?: string;
+    /**
+    * The css class to use when released
+    */
+    'releaseClass'?: string;
+    'services'?: Services;
+    /**
+    * The css class to use when short-pressed
+    */
+    'shortPressClass'?: string;
+  }
+
   interface MicrobitStateButtonB {
     /**
     * The css class to use when long-pressed
@@ -156,6 +354,22 @@ export namespace Components {
     */
     'shortPressClass': string;
   }
+  interface MicrobitStateButtonBAttributes extends StencilHTMLAttributes {
+    /**
+    * The css class to use when long-pressed
+    */
+    'longPressClass'?: string;
+    /**
+    * The css class to use when released
+    */
+    'releaseClass'?: string;
+    'services'?: Services;
+    /**
+    * The css class to use when short-pressed
+    */
+    'shortPressClass'?: string;
+  }
+
   interface MicrobitStateConnection {
     /**
     * The css class to use when connected
@@ -167,6 +381,18 @@ export namespace Components {
     */
     'disconnectedClass': string;
   }
+  interface MicrobitStateConnectionAttributes extends StencilHTMLAttributes {
+    /**
+    * The css class to use when connected
+    */
+    'connectedClass'?: string;
+    'device'?: BluetoothDevice;
+    /**
+    * The css class to use when disconnected
+    */
+    'disconnectedClass'?: string;
+  }
+
   interface MicrobitStateMovement {
     /**
     * The frequency to read the sensor
@@ -186,42 +412,70 @@ export namespace Components {
     */
     'stillClass': string;
   }
-  interface MicrobitTemperature {
+  interface MicrobitStateMovementAttributes extends StencilHTMLAttributes {
     /**
-    * The text shown when disconnected
+    * The frequency to read the sensor
     */
-    'disconnectedText': string;
+    'frequency'?: number;
     /**
-    * The text shown when no temperature
+    * The css class to use when moved
     */
-    'noTemperature': string;
-    'services': Services;
+    'movedClass'?: string;
     /**
-    * The interval to check the temperature (ms)
+    * The sensitivity of the sensor
     */
-    'temperaturePeriod': number;
-  }
-  interface MicrobitText {
+    'sensitivity'?: number;
+    'services'?: Services;
     /**
-    * The text shown on the button
+    * The css class to use when still
     */
-    'buttonLabel': string;
-    /**
-    * The speed to scroll the text
-    */
-    'scrollDelay': number;
-    'services': Services;
+    'stillClass'?: string;
   }
 }
 
 declare global {
+  interface StencilElementInterfaces {
+    'MicrobitCompass': Components.MicrobitCompass;
+    'MicrobitTemperature': Components.MicrobitTemperature;
+    'MicrobitFirmware': Components.MicrobitFirmware;
+    'MicrobitHardware': Components.MicrobitHardware;
+    'MicrobitManufacturer': Components.MicrobitManufacturer;
+    'MicrobitModel': Components.MicrobitModel;
+    'MicrobitName': Components.MicrobitName;
+    'MicrobitSerial': Components.MicrobitSerial;
+    'MicrobitMatrix': Components.MicrobitMatrix;
+    'MicrobitText': Components.MicrobitText;
+    'MicrobitCalibrate': Components.MicrobitCalibrate;
+    'MicrobitConnect': Components.MicrobitConnect;
+    'MicrobitReceive': Components.MicrobitReceive;
+    'MicrobitSend': Components.MicrobitSend;
+    'MicrobitStateButtonA': Components.MicrobitStateButtonA;
+    'MicrobitStateButtonB': Components.MicrobitStateButtonB;
+    'MicrobitStateConnection': Components.MicrobitStateConnection;
+    'MicrobitStateMovement': Components.MicrobitStateMovement;
+  }
 
+  interface StencilIntrinsicElements {
+    'microbit-compass': Components.MicrobitCompassAttributes;
+    'microbit-temperature': Components.MicrobitTemperatureAttributes;
+    'microbit-firmware': Components.MicrobitFirmwareAttributes;
+    'microbit-hardware': Components.MicrobitHardwareAttributes;
+    'microbit-manufacturer': Components.MicrobitManufacturerAttributes;
+    'microbit-model': Components.MicrobitModelAttributes;
+    'microbit-name': Components.MicrobitNameAttributes;
+    'microbit-serial': Components.MicrobitSerialAttributes;
+    'microbit-matrix': Components.MicrobitMatrixAttributes;
+    'microbit-text': Components.MicrobitTextAttributes;
+    'microbit-calibrate': Components.MicrobitCalibrateAttributes;
+    'microbit-connect': Components.MicrobitConnectAttributes;
+    'microbit-receive': Components.MicrobitReceiveAttributes;
+    'microbit-send': Components.MicrobitSendAttributes;
+    'microbit-state-button-a': Components.MicrobitStateButtonAAttributes;
+    'microbit-state-button-b': Components.MicrobitStateButtonBAttributes;
+    'microbit-state-connection': Components.MicrobitStateConnectionAttributes;
+    'microbit-state-movement': Components.MicrobitStateMovementAttributes;
+  }
 
-  interface HTMLMicrobitCalibrateElement extends Components.MicrobitCalibrate, HTMLStencilElement {}
-  var HTMLMicrobitCalibrateElement: {
-    prototype: HTMLMicrobitCalibrateElement;
-    new (): HTMLMicrobitCalibrateElement;
-  };
 
   interface HTMLMicrobitCompassElement extends Components.MicrobitCompass, HTMLStencilElement {}
   var HTMLMicrobitCompassElement: {
@@ -229,10 +483,10 @@ declare global {
     new (): HTMLMicrobitCompassElement;
   };
 
-  interface HTMLMicrobitConnectElement extends Components.MicrobitConnect, HTMLStencilElement {}
-  var HTMLMicrobitConnectElement: {
-    prototype: HTMLMicrobitConnectElement;
-    new (): HTMLMicrobitConnectElement;
+  interface HTMLMicrobitTemperatureElement extends Components.MicrobitTemperature, HTMLStencilElement {}
+  var HTMLMicrobitTemperatureElement: {
+    prototype: HTMLMicrobitTemperatureElement;
+    new (): HTMLMicrobitTemperatureElement;
   };
 
   interface HTMLMicrobitFirmwareElement extends Components.MicrobitFirmware, HTMLStencilElement {}
@@ -253,12 +507,6 @@ declare global {
     new (): HTMLMicrobitManufacturerElement;
   };
 
-  interface HTMLMicrobitMatrixElement extends Components.MicrobitMatrix, HTMLStencilElement {}
-  var HTMLMicrobitMatrixElement: {
-    prototype: HTMLMicrobitMatrixElement;
-    new (): HTMLMicrobitMatrixElement;
-  };
-
   interface HTMLMicrobitModelElement extends Components.MicrobitModel, HTMLStencilElement {}
   var HTMLMicrobitModelElement: {
     prototype: HTMLMicrobitModelElement;
@@ -271,6 +519,36 @@ declare global {
     new (): HTMLMicrobitNameElement;
   };
 
+  interface HTMLMicrobitSerialElement extends Components.MicrobitSerial, HTMLStencilElement {}
+  var HTMLMicrobitSerialElement: {
+    prototype: HTMLMicrobitSerialElement;
+    new (): HTMLMicrobitSerialElement;
+  };
+
+  interface HTMLMicrobitMatrixElement extends Components.MicrobitMatrix, HTMLStencilElement {}
+  var HTMLMicrobitMatrixElement: {
+    prototype: HTMLMicrobitMatrixElement;
+    new (): HTMLMicrobitMatrixElement;
+  };
+
+  interface HTMLMicrobitTextElement extends Components.MicrobitText, HTMLStencilElement {}
+  var HTMLMicrobitTextElement: {
+    prototype: HTMLMicrobitTextElement;
+    new (): HTMLMicrobitTextElement;
+  };
+
+  interface HTMLMicrobitCalibrateElement extends Components.MicrobitCalibrate, HTMLStencilElement {}
+  var HTMLMicrobitCalibrateElement: {
+    prototype: HTMLMicrobitCalibrateElement;
+    new (): HTMLMicrobitCalibrateElement;
+  };
+
+  interface HTMLMicrobitConnectElement extends Components.MicrobitConnect, HTMLStencilElement {}
+  var HTMLMicrobitConnectElement: {
+    prototype: HTMLMicrobitConnectElement;
+    new (): HTMLMicrobitConnectElement;
+  };
+
   interface HTMLMicrobitReceiveElement extends Components.MicrobitReceive, HTMLStencilElement {}
   var HTMLMicrobitReceiveElement: {
     prototype: HTMLMicrobitReceiveElement;
@@ -281,12 +559,6 @@ declare global {
   var HTMLMicrobitSendElement: {
     prototype: HTMLMicrobitSendElement;
     new (): HTMLMicrobitSendElement;
-  };
-
-  interface HTMLMicrobitSerialElement extends Components.MicrobitSerial, HTMLStencilElement {}
-  var HTMLMicrobitSerialElement: {
-    prototype: HTMLMicrobitSerialElement;
-    new (): HTMLMicrobitSerialElement;
   };
 
   interface HTMLMicrobitStateButtonAElement extends Components.MicrobitStateButtonA, HTMLStencilElement {}
@@ -313,268 +585,55 @@ declare global {
     new (): HTMLMicrobitStateMovementElement;
   };
 
-  interface HTMLMicrobitTemperatureElement extends Components.MicrobitTemperature, HTMLStencilElement {}
-  var HTMLMicrobitTemperatureElement: {
-    prototype: HTMLMicrobitTemperatureElement;
-    new (): HTMLMicrobitTemperatureElement;
-  };
-
-  interface HTMLMicrobitTextElement extends Components.MicrobitText, HTMLStencilElement {}
-  var HTMLMicrobitTextElement: {
-    prototype: HTMLMicrobitTextElement;
-    new (): HTMLMicrobitTextElement;
-  };
   interface HTMLElementTagNameMap {
-    'microbit-calibrate': HTMLMicrobitCalibrateElement;
+    'microbit-compass': HTMLMicrobitCompassElement
+    'microbit-temperature': HTMLMicrobitTemperatureElement
+    'microbit-firmware': HTMLMicrobitFirmwareElement
+    'microbit-hardware': HTMLMicrobitHardwareElement
+    'microbit-manufacturer': HTMLMicrobitManufacturerElement
+    'microbit-model': HTMLMicrobitModelElement
+    'microbit-name': HTMLMicrobitNameElement
+    'microbit-serial': HTMLMicrobitSerialElement
+    'microbit-matrix': HTMLMicrobitMatrixElement
+    'microbit-text': HTMLMicrobitTextElement
+    'microbit-calibrate': HTMLMicrobitCalibrateElement
+    'microbit-connect': HTMLMicrobitConnectElement
+    'microbit-receive': HTMLMicrobitReceiveElement
+    'microbit-send': HTMLMicrobitSendElement
+    'microbit-state-button-a': HTMLMicrobitStateButtonAElement
+    'microbit-state-button-b': HTMLMicrobitStateButtonBElement
+    'microbit-state-connection': HTMLMicrobitStateConnectionElement
+    'microbit-state-movement': HTMLMicrobitStateMovementElement
+  }
+
+  interface ElementTagNameMap {
     'microbit-compass': HTMLMicrobitCompassElement;
-    'microbit-connect': HTMLMicrobitConnectElement;
+    'microbit-temperature': HTMLMicrobitTemperatureElement;
     'microbit-firmware': HTMLMicrobitFirmwareElement;
     'microbit-hardware': HTMLMicrobitHardwareElement;
     'microbit-manufacturer': HTMLMicrobitManufacturerElement;
-    'microbit-matrix': HTMLMicrobitMatrixElement;
     'microbit-model': HTMLMicrobitModelElement;
     'microbit-name': HTMLMicrobitNameElement;
+    'microbit-serial': HTMLMicrobitSerialElement;
+    'microbit-matrix': HTMLMicrobitMatrixElement;
+    'microbit-text': HTMLMicrobitTextElement;
+    'microbit-calibrate': HTMLMicrobitCalibrateElement;
+    'microbit-connect': HTMLMicrobitConnectElement;
     'microbit-receive': HTMLMicrobitReceiveElement;
     'microbit-send': HTMLMicrobitSendElement;
-    'microbit-serial': HTMLMicrobitSerialElement;
     'microbit-state-button-a': HTMLMicrobitStateButtonAElement;
     'microbit-state-button-b': HTMLMicrobitStateButtonBElement;
     'microbit-state-connection': HTMLMicrobitStateConnectionElement;
     'microbit-state-movement': HTMLMicrobitStateMovementElement;
-    'microbit-temperature': HTMLMicrobitTemperatureElement;
-    'microbit-text': HTMLMicrobitTextElement;
-  }
-}
-
-declare namespace LocalJSX {
-  interface MicrobitCalibrate extends JSXBase.HTMLAttributes<HTMLMicrobitCalibrateElement> {
-    /**
-    * The button label to calibrate
-    */
-    'calibrateLabel'?: string;
-    'services'?: Services;
-  }
-  interface MicrobitCompass extends JSXBase.HTMLAttributes<HTMLMicrobitCompassElement> {
-    'services'?: Services;
-  }
-  interface MicrobitConnect extends JSXBase.HTMLAttributes<HTMLMicrobitConnectElement> {
-    /**
-    * The button label to connect
-    */
-    'connectLabel'?: string;
-    'device'?: BluetoothDevice;
-    /**
-    * The button label to disconnect
-    */
-    'disconnectLabel'?: string;
-  }
-  interface MicrobitFirmware extends JSXBase.HTMLAttributes<HTMLMicrobitFirmwareElement> {
-    'deviceInformation'?: DeviceInformation;
-    /**
-    * The text shown when disconnected
-    */
-    'disconnectedText'?: string;
-    /**
-    * The text shown when no firmware version
-    */
-    'noInfo'?: string;
-  }
-  interface MicrobitHardware extends JSXBase.HTMLAttributes<HTMLMicrobitHardwareElement> {
-    'deviceInformation'?: DeviceInformation;
-    /**
-    * The text shown when disconnected
-    */
-    'disconnectedText'?: string;
-    /**
-    * The text shown when no hardware version
-    */
-    'noInfo'?: string;
-  }
-  interface MicrobitManufacturer extends JSXBase.HTMLAttributes<HTMLMicrobitManufacturerElement> {
-    'deviceInformation'?: DeviceInformation;
-    /**
-    * The text shown when disconnected
-    */
-    'disconnectedText'?: string;
-    /**
-    * The text shown when no manufacturer name
-    */
-    'noInfo'?: string;
-  }
-  interface MicrobitMatrix extends JSXBase.HTMLAttributes<HTMLMicrobitMatrixElement> {
-    /**
-    * The template for identifying child LEDs
-    */
-    'idTemplate'?: string;
-    /**
-    * The css class for off LEDs
-    */
-    'offClass'?: string;
-    /**
-    * The css class for on LEDs
-    */
-    'onClass'?: string;
-    'services'?: Services;
-  }
-  interface MicrobitModel extends JSXBase.HTMLAttributes<HTMLMicrobitModelElement> {
-    'deviceInformation'?: DeviceInformation;
-    /**
-    * The text shown when disconnected
-    */
-    'disconnectedText'?: string;
-    /**
-    * The text shown when no model number
-    */
-    'noInfo'?: string;
-  }
-  interface MicrobitName extends JSXBase.HTMLAttributes<HTMLMicrobitNameElement> {
-    'device'?: BluetoothDevice;
-    /**
-    * The text shown when disconnected
-    */
-    'disconnectedText'?: string;
-  }
-  interface MicrobitReceive extends JSXBase.HTMLAttributes<HTMLMicrobitReceiveElement> {
-    'services'?: Services;
-  }
-  interface MicrobitSend extends JSXBase.HTMLAttributes<HTMLMicrobitSendElement> {
-    /**
-    * The text shown on the button
-    */
-    'buttonLabel'?: string;
-    /**
-    * The delimiter to use
-    */
-    'delimiter'?: string;
-    'services'?: Services;
-  }
-  interface MicrobitSerial extends JSXBase.HTMLAttributes<HTMLMicrobitSerialElement> {
-    'deviceInformation'?: DeviceInformation;
-    /**
-    * The text shown when disconnected
-    */
-    'disconnectedText'?: string;
-    /**
-    * The text shown when no serial number
-    */
-    'noInfo'?: string;
-  }
-  interface MicrobitStateButtonA extends JSXBase.HTMLAttributes<HTMLMicrobitStateButtonAElement> {
-    /**
-    * The css class to use when long-pressed
-    */
-    'longPressClass'?: string;
-    /**
-    * The css class to use when released
-    */
-    'releaseClass'?: string;
-    'services'?: Services;
-    /**
-    * The css class to use when short-pressed
-    */
-    'shortPressClass'?: string;
-  }
-  interface MicrobitStateButtonB extends JSXBase.HTMLAttributes<HTMLMicrobitStateButtonBElement> {
-    /**
-    * The css class to use when long-pressed
-    */
-    'longPressClass'?: string;
-    /**
-    * The css class to use when released
-    */
-    'releaseClass'?: string;
-    'services'?: Services;
-    /**
-    * The css class to use when short-pressed
-    */
-    'shortPressClass'?: string;
-  }
-  interface MicrobitStateConnection extends JSXBase.HTMLAttributes<HTMLMicrobitStateConnectionElement> {
-    /**
-    * The css class to use when connected
-    */
-    'connectedClass'?: string;
-    'device'?: BluetoothDevice;
-    /**
-    * The css class to use when disconnected
-    */
-    'disconnectedClass'?: string;
-  }
-  interface MicrobitStateMovement extends JSXBase.HTMLAttributes<HTMLMicrobitStateMovementElement> {
-    /**
-    * The frequency to read the sensor
-    */
-    'frequency'?: number;
-    /**
-    * The css class to use when moved
-    */
-    'movedClass'?: string;
-    /**
-    * The sensitivity of the sensor
-    */
-    'sensitivity'?: number;
-    'services'?: Services;
-    /**
-    * The css class to use when still
-    */
-    'stillClass'?: string;
-  }
-  interface MicrobitTemperature extends JSXBase.HTMLAttributes<HTMLMicrobitTemperatureElement> {
-    /**
-    * The text shown when disconnected
-    */
-    'disconnectedText'?: string;
-    /**
-    * The text shown when no temperature
-    */
-    'noTemperature'?: string;
-    'services'?: Services;
-    /**
-    * The interval to check the temperature (ms)
-    */
-    'temperaturePeriod'?: number;
-  }
-  interface MicrobitText extends JSXBase.HTMLAttributes<HTMLMicrobitTextElement> {
-    /**
-    * The text shown on the button
-    */
-    'buttonLabel'?: string;
-    /**
-    * The speed to scroll the text
-    */
-    'scrollDelay'?: number;
-    'services'?: Services;
   }
 
-  interface IntrinsicElements {
-    'microbit-calibrate': MicrobitCalibrate;
-    'microbit-compass': MicrobitCompass;
-    'microbit-connect': MicrobitConnect;
-    'microbit-firmware': MicrobitFirmware;
-    'microbit-hardware': MicrobitHardware;
-    'microbit-manufacturer': MicrobitManufacturer;
-    'microbit-matrix': MicrobitMatrix;
-    'microbit-model': MicrobitModel;
-    'microbit-name': MicrobitName;
-    'microbit-receive': MicrobitReceive;
-    'microbit-send': MicrobitSend;
-    'microbit-serial': MicrobitSerial;
-    'microbit-state-button-a': MicrobitStateButtonA;
-    'microbit-state-button-b': MicrobitStateButtonB;
-    'microbit-state-connection': MicrobitStateConnection;
-    'microbit-state-movement': MicrobitStateMovement;
-    'microbit-temperature': MicrobitTemperature;
-    'microbit-text': MicrobitText;
-  }
-}
 
-export { LocalJSX as JSX };
-
-
-declare module "@stencil/core" {
   export namespace JSX {
-    interface IntrinsicElements extends LocalJSX.IntrinsicElements {}
+    export interface Element {}
+    export interface IntrinsicElements extends StencilIntrinsicElements {
+      [tagName: string]: any;
+    }
   }
+  export interface HTMLAttributes extends StencilHTMLAttributes {}
+
 }
-
-

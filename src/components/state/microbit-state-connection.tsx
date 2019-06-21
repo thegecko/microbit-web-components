@@ -1,4 +1,4 @@
-import { h, Component, Prop, Element } from "@stencil/core";
+import { Component, Prop, Element } from "@stencil/core";
 import { microbitStore } from '../../microbit-store';
 
 @Component({
@@ -10,7 +10,7 @@ export class MicrobitStateConnection {
     }
 
     @Element() el;
-    @Prop() device: BluetoothDevice = null;
+    @Prop({mutable: true}) device: BluetoothDevice = null;
 
     /**
      * The css class to use when connected

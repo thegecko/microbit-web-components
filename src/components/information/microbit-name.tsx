@@ -10,7 +10,7 @@ export class MicrobitName {
     }
 
     @Element() el;
-    @Prop() device: BluetoothDevice = null;
+    @Prop({mutable: true}) device: BluetoothDevice = null;
 
     /**
      * The text shown when disconnected

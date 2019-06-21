@@ -1,4 +1,4 @@
-import { h, Component, Prop, Element, State, Watch } from "@stencil/core";
+import { Component, Prop, Element, State, Watch } from "@stencil/core";
 import { Services } from "microbit-web-bluetooth";
 import { microbitStore } from '../../microbit-store';
 
@@ -11,7 +11,7 @@ export class MicrobitSend {
     }
 
     @Element() el;
-    @Prop() services: Services = null;
+    @Prop({mutable: true}) services: Services = null;
 
     /**
      * The text shown on the button
@@ -33,7 +33,7 @@ export class MicrobitSend {
     }
 
     render() {
-        let button: Element;
+        let button: JSX.Element;
         
         if (this.buttonLabel) {
             button = <input
