@@ -1,7 +1,8 @@
 import { Component, Prop, Element, Watch } from "@stencil/core";
 import { Services } from "microbit-web-bluetooth";
-import DeviceTunnel from '../../device-tunnel';
 import { LedMatrix } from "microbit-web-bluetooth/types/services/led";
+import { microbitStore } from '../../microbit-store';
+
 
 type ElMatrix = [
     [HTMLElement, HTMLElement, HTMLElement, HTMLElement, HTMLElement],
@@ -15,8 +16,12 @@ type ElMatrix = [
     tag: 'microbit-matrix'
 })
 export class MicrobitMatrix {
+    constructor() {
+        microbitStore.addListener(this);
+    }
+
     @Element() el;
-    @Prop() services: Services = undefined;
+    @Prop() services: Services = null;
 
     /**
      * The template for identifying child LEDs
@@ -80,5 +85,3 @@ export class MicrobitMatrix {
         });
     }
 }
-
-DeviceTunnel.injectProps(MicrobitMatrix, ['services']);

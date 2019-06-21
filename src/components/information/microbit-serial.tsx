@@ -1,13 +1,17 @@
 import { Component, Prop, Element } from "@stencil/core";
 import { DeviceInformation } from "microbit-web-bluetooth/types/services/device-information";
-import DeviceTunnel from '../../device-tunnel';
+import { microbitStore } from '../../microbit-store';
 
 @Component({
     tag: 'microbit-serial'
 })
 export class MicrobitSerial {
+    constructor() {
+        microbitStore.addListener(this);
+    }
+
     @Element() el;
-    @Prop() deviceInformation: DeviceInformation = undefined;
+    @Prop() deviceInformation: DeviceInformation = null;
 
     /**
      * The text shown when disconnected
@@ -23,5 +27,3 @@ export class MicrobitSerial {
         return this.deviceInformation ? this.deviceInformation.serialNumber || this.noInfo : this.disconnectedText;
     }
 }
-
-DeviceTunnel.injectProps(MicrobitSerial, ['deviceInformation']);

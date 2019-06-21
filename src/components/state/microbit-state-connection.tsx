@@ -1,12 +1,16 @@
-import { Component, Prop, Element } from "@stencil/core";
-import DeviceTunnel from '../../device-tunnel';
+import { h, Component, Prop, Element } from "@stencil/core";
+import { microbitStore } from '../../microbit-store';
 
 @Component({
     tag: 'microbit-state-connection'
 })
 export class MicrobitStateConnection {
+    constructor() {
+        microbitStore.addListener(this);
+    }
+
     @Element() el;
-    @Prop() device: BluetoothDevice = undefined;
+    @Prop() device: BluetoothDevice = null;
 
     /**
      * The css class to use when connected
@@ -27,5 +31,3 @@ export class MicrobitStateConnection {
         );
     }
 }
-
-DeviceTunnel.injectProps(MicrobitStateConnection, ['device']);

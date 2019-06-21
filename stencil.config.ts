@@ -4,7 +4,7 @@ export const config: Config = {
     namespace: 'microbit',
     outputTargets: [
         { type: 'dist' },
-        { type: 'docs' },
+        { type: 'docs-readme' },
         {
             type: 'www',
             baseUrl: '/microbit-web-components/www/',

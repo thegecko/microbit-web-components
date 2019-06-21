@@ -1,13 +1,17 @@
-import { Component, Prop, Element, Watch, State } from "@stencil/core";
+import { h, Component, Prop, Element, Watch, State } from "@stencil/core";
 import { Services } from "microbit-web-bluetooth";
-import DeviceTunnel from '../../device-tunnel';
+import { microbitStore } from '../../microbit-store';
 
 @Component({
     tag: 'microbit-state-button-a'
 })
 export class MicrobitStateButtonA {
+    constructor() {
+        microbitStore.addListener(this);
+    }
+
     @Element() el;
-    @Prop() services: Services = undefined;
+    @Prop() services: Services = null;
 
     /**
      * The css class to use when released
@@ -53,5 +57,3 @@ export class MicrobitStateButtonA {
         : this.releaseClass;
     }
 }
-
-DeviceTunnel.injectProps(MicrobitStateButtonA, ['services']);

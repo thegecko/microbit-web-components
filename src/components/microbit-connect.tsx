@@ -1,17 +1,17 @@
-import { Component, Prop, Element } from "@stencil/core";
-import { requestMicrobit, getServices, Services } from "microbit-web-bluetooth";
-import { DeviceInformation } from "microbit-web-bluetooth/types/services/device-information";
-import DeviceTunnel from '../device-tunnel';
+import { h, Component, Prop, Element } from "@stencil/core";
+import { requestMicrobit, getServices } from "microbit-web-bluetooth";
+import { microbitStore } from '../microbit-store';
 
 @Component({
     tag: 'microbit-connect'
 })
 export class MicrobitConnect {
+    constructor() {
+        microbitStore.addListener(this);
+    }
+
     @Element() el;
-    @Prop() device: BluetoothDevice = undefined;
-    @Prop() setDevice: (device: BluetoothDevice) => void;
-    @Prop() setServices: (services: Services) => void;
-    @Prop() setDeviceInformation: (deviceInformation: DeviceInformation) => void;
+    @Prop() device: BluetoothDevice = null;
 
     /**
      * The button label to connect
@@ -38,24 +38,20 @@ export class MicrobitConnect {
             if (this.device.gatt.connected) {
                 await this.device.gatt.disconnect();
             }
-            this.setDevice(undefined);
-            this.setServices(undefined);
-            this.setDeviceInformation(undefined);
+            microbitStore.empty();
             return;
         }
 
         const device = await requestMicrobit(window.navigator.bluetooth);
         if (device) {
-            this.setDevice(device);
+            microbitStore.update("device", device);
             const services = await getServices(device);
-            this.setServices(services);
+            microbitStore.update("services", services);
             if (services.deviceInformationService) {
                 const deviceInformation = await services.deviceInformationService.readDeviceInformation();
-                this.setDeviceInformation(deviceInformation);
+                microbitStore.update("deviceInformation", deviceInformation);
             }
             device.addEventListener("gattserverdisconnected", this.connectDisconnect.bind(this));
         }
     }
 }
-
-DeviceTunnel.injectProps(MicrobitConnect, ['device', 'setDevice', 'setServices', 'setDeviceInformation']);

@@ -1,13 +1,17 @@
-import { Component, Prop, Element, State, Watch } from "@stencil/core";
+import { h, Component, Prop, Element, State, Watch } from "@stencil/core";
 import { Services } from "microbit-web-bluetooth";
-import DeviceTunnel from '../../device-tunnel';
+import { microbitStore } from '../../microbit-store';
 
 @Component({
     tag: 'microbit-receive'
 })
 export class MicrobitReceive {
+    constructor() {
+        microbitStore.addListener(this);
+    }
+
     @Element() el;
-    @Prop() services: Services = undefined;
+    @Prop() services: Services = null;
 
     @State() disabled = true;
     @State() data: string = "";
@@ -37,5 +41,3 @@ export class MicrobitReceive {
         );
     }
 }
-
-DeviceTunnel.injectProps(MicrobitReceive, ['services']);

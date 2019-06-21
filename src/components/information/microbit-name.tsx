@@ -1,12 +1,16 @@
 import { Component, Prop, Element } from "@stencil/core";
-import DeviceTunnel from '../../device-tunnel';
+import { microbitStore } from '../../microbit-store';
 
 @Component({
     tag: 'microbit-name'
 })
 export class MicrobitName {
+    constructor() {
+        microbitStore.addListener(this);
+    }
+
     @Element() el;
-    @Prop() device: BluetoothDevice = undefined;
+    @Prop() device: BluetoothDevice = null;
 
     /**
      * The text shown when disconnected
@@ -17,5 +21,3 @@ export class MicrobitName {
         return this.device ? this.device.name : this.disconnectedText;
     }
 }
-
-DeviceTunnel.injectProps(MicrobitName, ['device']);

@@ -1,13 +1,17 @@
-import { Component, Prop, Element, State, Watch } from "@stencil/core";
+import { h, Component, Prop, Element, State, Watch } from "@stencil/core";
 import { Services } from "microbit-web-bluetooth";
-import DeviceTunnel from '../device-tunnel';
+import { microbitStore } from '../microbit-store';
 
 @Component({
     tag: 'microbit-calibrate'
 })
 export class MicrobitCalibrate {
+    constructor() {
+        microbitStore.addListener(this);
+    }
+
     @Element() el;
-    @Prop() services: Services = undefined;
+    @Prop() services: Services = null;
 
     /**
      * The button label to calibrate
@@ -33,5 +37,3 @@ export class MicrobitCalibrate {
         }
     }
 }
-
-DeviceTunnel.injectProps(MicrobitCalibrate, ['services']);

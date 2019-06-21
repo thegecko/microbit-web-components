@@ -1,13 +1,17 @@
-import { Component, Prop, Element, State, Watch } from "@stencil/core";
+import { h, Component, Prop, Element, State, Watch } from "@stencil/core";
 import { Services } from "microbit-web-bluetooth";
-import DeviceTunnel from '../../device-tunnel';
+import { microbitStore } from '../../microbit-store';
 
 @Component({
     tag: 'microbit-text'
 })
 export class MicrobitText {
+    constructor() {
+        microbitStore.addListener(this);
+    }
+
     @Element() el;
-    @Prop() services: Services = undefined;
+    @Prop() services: Services = null;
 
     /**
      * The text shown on the button
@@ -33,7 +37,7 @@ export class MicrobitText {
     }
 
     render() {
-        let button: JSX.Element;
+        let button: Element;
         
         if (this.buttonLabel) {
             button = <input
@@ -67,5 +71,3 @@ export class MicrobitText {
         await this.services.ledService.writeText(this.text);
     }
 }
-
-DeviceTunnel.injectProps(MicrobitText, ['services']);

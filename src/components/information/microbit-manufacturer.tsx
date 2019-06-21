@@ -1,13 +1,17 @@
 import { Component, Prop, Element } from "@stencil/core";
 import { DeviceInformation } from "microbit-web-bluetooth/types/services/device-information";
-import DeviceTunnel from '../../device-tunnel';
+import { microbitStore } from '../../microbit-store';
 
 @Component({
     tag: 'microbit-manufacturer'
 })
 export class MicrobitManufacturer {
+    constructor() {
+        microbitStore.addListener(this);
+    }
+
     @Element() el;
-    @Prop() deviceInformation: DeviceInformation = undefined;
+    @Prop() deviceInformation: DeviceInformation = null;
 
     /**
      * The text shown when disconnected
@@ -23,5 +27,3 @@ export class MicrobitManufacturer {
         return this.deviceInformation ? this.deviceInformation.manufacturer || this.noInfo : this.disconnectedText;
     }
 }
-
-DeviceTunnel.injectProps(MicrobitManufacturer, ['deviceInformation']);

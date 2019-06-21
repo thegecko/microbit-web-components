@@ -3,7 +3,7 @@
 <head>
     <title>Microbit Web Components</title>
     <style>
-        microbit-app > * {
+        .container > * {
             display: block;
         }
         .microbit-disconnected > .state {
@@ -55,11 +55,12 @@
             box-shadow: inset 0px -15px 0 20px lightblue;
         }
     </style>
-    <script src="/build/microbit.js"></script>
+    <script type="module" src="/build/microbit.esm.js"></script>
+    <script nomodule src="/build/microbit.js"></script>
 </head>
 
 <body>
-    <microbit-app>
+    <div class="container">
         <microbit-connect></microbit-connect>
         <microbit-name></microbit-name>
         <microbit-manufacturer></microbit-manufacturer>
@@ -114,7 +115,7 @@
         <microbit-compass>
             <div id="compass"></div>
         </microbit-compass>
-    </microbit-app>
+    </div>
 </body>
 
 </html>

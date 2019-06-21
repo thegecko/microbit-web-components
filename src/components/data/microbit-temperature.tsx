@@ -1,13 +1,17 @@
 import { Component, Prop, Element, State, Watch } from "@stencil/core";
 import { Services } from "microbit-web-bluetooth";
-import DeviceTunnel from '../../device-tunnel';
+import { microbitStore } from '../../microbit-store';
 
 @Component({
     tag: 'microbit-temperature'
 })
 export class MicrobitTemperature {
+    constructor() {
+        microbitStore.addListener(this);
+    }
+
     @Element() el;
-    @Prop() services: Services = undefined;
+    @Prop() services: Services = null;
 
     /**
      * The interval to check the temperature (ms)
@@ -49,5 +53,3 @@ export class MicrobitTemperature {
         return this.temperature;
     }
 }
-
-DeviceTunnel.injectProps(MicrobitTemperature, ['services']);
