@@ -7,7 +7,6 @@ export const config: Config = {
         { type: 'docs-readme' },
         {
             type: 'www',
-            baseUrl: '/microbit-web-components/www/',
             serviceWorker: null
         }
     ]
