@@ -1,6 +1,7 @@
 .DS_Store
-.stencil
-dist
+.rpt2_cache
 node_modules
-www
-src/**/readme.md
+dist
+types
+docs
+npm-debug.log

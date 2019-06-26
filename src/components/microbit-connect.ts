@@ -1,28 +1,31 @@
-import { Component, Prop, Element } from "@stencil/core";
+import { customElement, LitElement, property, html } from "lit-element";
 import { requestMicrobit, getServices } from "microbit-web-bluetooth";
-import { microbitStore } from '../microbit-store';
+import { microbitStore } from "../microbit-store";
 
-@Component({
-    tag: 'microbit-connect'
-})
-export class MicrobitConnect {
-    @Element() el;
-    @Prop({mutable: true}) device: BluetoothDevice = null;
+@customElement("microbit-connect")
+export class MicrobitConnect extends LitElement {
+
+    @property()
+    public device?: BluetoothDevice | null = null;
 
     /**
      * The button label to connect
      */
-    @Prop() connectLabel: string = "Connect"
+    @property()
+    public connectLabel: string = "Connect";
 
     /**
      * The button label to disconnect
      */
-    @Prop() disconnectLabel: string = "Disconnect"
+    @property()
+    public disconnectLabel: string = "Disconnect";
 
-    render() {
-        return (
-            <button onClick={() => this.connectDisconnect()}>{this.getLabel()}</button>
-        );
+    public createRenderRoot() {
+        return this;
+    }
+
+    public render() {
+        return html`<button @click=${this.connectDisconnect}>${this.getLabel()}</button>`;
     }
 
     private getLabel() {
@@ -31,8 +34,8 @@ export class MicrobitConnect {
 
     private async connectDisconnect() {
         if (this.device) {
-            if (this.device.gatt.connected) {
-                await this.device.gatt.disconnect();
+            if (this.device.gatt!.connected) {
+                await this.device.gatt!.disconnect();
             }
             this.device = null;
             microbitStore.empty();

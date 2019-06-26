@@ -1,6 +1,7 @@
 .DS_Store
-.stencil
 .vscode
+.rpt2_cache
+docs-theme
 node_modules
 .gitignore
 circle.yml

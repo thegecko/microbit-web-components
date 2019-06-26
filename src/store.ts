@@ -1,13 +1,13 @@
-export class Store<T> {
+export class Store<T extends { [key: string]: any }> {
     private data: { [key: string]: any } = {};
-    private listeners: Partial<T>[] =[];
+    private listeners: Array<Partial<T>> = [];
 
     private _update(key: string, value: any) {
         this.data[key.toString()] = value;
 
         this.listeners.forEach(listener => {
             if (listener[key] !== undefined) {
-                listener[key] = value;
+                listener[key as keyof T] = value;
             }
         });
     }
@@ -16,7 +16,7 @@ export class Store<T> {
         this.listeners.push(listener);
         Object.keys(this.data).forEach(key => {
             if (listener[key] !== undefined) {
-                listener[key] = this.data[key];
+                listener[key as keyof T] = this.data[key];
             }
         });
     }

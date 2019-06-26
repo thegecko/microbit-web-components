@@ -3,9 +3,9 @@ import { DeviceInformation } from "microbit-web-bluetooth/types/services/device-
 import { Store } from "./store";
 
 export interface MicrobitStore {
-    device: BluetoothDevice;
-    services: Services;
-    deviceInformation: DeviceInformation;
+    device: BluetoothDevice | null;
+    services: Services | null;
+    deviceInformation: DeviceInformation | null;
 }
 
 export const microbitStore = new Store<MicrobitStore>();
