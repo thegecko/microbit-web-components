@@ -10,19 +10,19 @@ export abstract class MicrobitStateButton extends LitElement {
     /**
      * The CSS variable to use for the background when released
      */
-    @property()
+    @property({attribute: "release-background"})
     public releaseBackground: string = "microbit-button-release";
 
     /**
      * The CSS variable to use for the background when short-pressed
      */
-    @property()
+    @property({attribute: "short-press-background"})
     public shortPressBackground: string = "microbit-button-short-press";
 
     /**
      * The CSS variable to use for the background when long-pressed
      */
-    @property()
+    @property({attribute: "long-press-background"})
     public longPressBackground: string = "microbit-button-long-press";
 
     protected background = this.releaseBackground;

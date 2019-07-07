@@ -16,7 +16,7 @@ export class MicrobitSerial extends LitElement {
     /**
      * The text shown when no serial number
      */
-    @property()
+    @property({attribute: "no-info"})
     public noInfo: string = "No serial number found";
 
     constructor() {
@@ -25,6 +25,7 @@ export class MicrobitSerial extends LitElement {
     }
 
     public render() {
-        return html`${this.deviceInformation ? this.deviceInformation.serialNumber || this.noInfo : this.disconnectedText}`;
+        return html`${this.deviceInformation ? this.deviceInformation.serialNumber
+            || this.noInfo : this.disconnectedText}`;
     }
 }

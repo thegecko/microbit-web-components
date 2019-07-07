@@ -10,7 +10,7 @@ export class MicrobitSend extends LitElement {
     /**
      * The text shown on the button
      */
-    @property()
+    @property({attribute: "button-label"})
     public buttonLabel: string = "";
 
     /**
@@ -28,22 +28,27 @@ export class MicrobitSend extends LitElement {
 
     public render() {
         let button: any;
+        const disabled = !(this.services && this.services.uartService);
 
         if (this.buttonLabel) {
-            button = html`<input
-                type="submit"
-                disabled=${!this.services || !this.services.uartService}
-                value=${this.buttonLabel}
-                @click=${this.sendText}></input>`;
+            button = html`
+                <input
+                    type="submit"
+                    value=${this.buttonLabel}
+                    @click=${this.sendText}
+                    ?disabled=${disabled}>
+                </input>
+            `;
         }
 
         return html`
             <span>
                 <input
                     type="input"
-                    disabled=${!this.services || !this.services.uartService}
                     maxLength=20
-                    @keyup=${this.handleKey}></input>
+                    @keyup=${this.handleKey}
+                    ?disabled=${disabled}>
+                </input>
                 ${button}
             </span>
         `;

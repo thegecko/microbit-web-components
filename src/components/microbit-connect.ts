@@ -11,13 +11,13 @@ export class MicrobitConnect extends LitElement {
     /**
      * The button label to connect
      */
-    @property()
+    @property({attribute: "connect-label"})
     public connectLabel: string = "Connect";
 
     /**
      * The button label to disconnect
      */
-    @property()
+    @property({attribute: "disconnect-label"})
     public disconnectLabel: string = "Disconnect";
 
     public createRenderRoot() {

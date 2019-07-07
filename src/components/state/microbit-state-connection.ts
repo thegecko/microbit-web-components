@@ -9,13 +9,13 @@ export class MicrobitStateConnection extends LitElement {
     /**
      * The CSS variable to use for the background when connected
      */
-    @property()
+    @property({attribute: "connected-background"})
     public connectedBackground: string = "microbit-connected";
 
     /**
      * The CSS variable to use for the background when disconnected
      */
-    @property()
+    @property({attribute: "disconnected-background"})
     public disconnectedBackground: string = "microbit-disconnected";
 
     constructor() {

@@ -9,7 +9,7 @@ export class MicrobitName extends LitElement {
     /**
      * The text shown when disconnected
      */
-    @property()
+    @property({attribute: "disconnected-text"})
     public disconnectedText: string = "Disconnected";
 
     constructor() {

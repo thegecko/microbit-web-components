@@ -10,13 +10,13 @@ export class MicrobitHardware extends LitElement {
     /**
      * The text shown when disconnected
      */
-    @property()
+    @property({attribute: "disconnected-text"})
     public disconnectedText: string = "Disconnected";
 
     /**
      * The text shown when no hardware version
      */
-    @property()
+    @property({attribute: "no-info"})
     public noInfo: string = "No hardware version found";
 
     constructor() {
@@ -25,6 +25,7 @@ export class MicrobitHardware extends LitElement {
     }
 
     public render() {
-        return html`${this.deviceInformation ? this.deviceInformation.hardwareRevision || this.noInfo : this.disconnectedText}`;
+        return html`${this.deviceInformation ? this.deviceInformation.hardwareRevision
+            || this.noInfo : this.disconnectedText}`;
     }
 }

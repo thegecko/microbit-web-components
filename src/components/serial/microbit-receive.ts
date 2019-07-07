@@ -7,7 +7,6 @@ export class MicrobitReceive extends LitElement {
     @property()
     public services: Services | null = null;
 
-    @property({ attribute: false, reflect: false })
     private data: string = "";
 
     constructor() {
@@ -27,22 +26,26 @@ export class MicrobitReceive extends LitElement {
         `;
     }
 
-    public attributeChangedCallback(name: string, oldval: string | null, newval: string | null) {
-        super.attributeChangedCallback(name, oldval, newval);
+    public updated(changedProps: Map<string, any>) {
+        super.updated(changedProps);
 
-        if (name === "services") {
-            this.watchHandler();
+        if (changedProps.has("services")) {
+            this.servicesUpdated();
         }
     }
 
-    private async watchHandler() {
-        const service = this.services!.uartService;
-
-        if (!service) {
+    private async servicesUpdated() {
+        if (!this.services || !this.services.uartService) {
             this.data = "";
             return;
         }
 
-        await service.addEventListener("receiveText", event => this.data += event.detail);
+        const service = this.services.uartService;
+        await service.addEventListener("receiveText", event => this.setData(event.detail));
+    }
+
+    private setData(data: string) {
+        this.data = data;
+        this.requestUpdate();
     }
 }

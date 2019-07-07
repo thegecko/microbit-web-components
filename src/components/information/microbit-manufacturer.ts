@@ -10,13 +10,13 @@ export class MicrobitManufacturer extends LitElement {
     /**
      * The text shown when disconnected
      */
-    @property()
+    @property({attribute: "disconnected-text"})
     public disconnectedText: string = "Disconnected";
 
     /**
      * The text shown when no manufacturer name
      */
-    @property()
+    @property({attribute: "no-info"})
     public noInfo: string = "No manufacturer name found";
 
     constructor() {
@@ -25,6 +25,7 @@ export class MicrobitManufacturer extends LitElement {
     }
 
     public render() {
-        return html`${this.deviceInformation ? this.deviceInformation.manufacturer || this.noInfo : this.disconnectedText}`;
+        return html`${this.deviceInformation ? this.deviceInformation.manufacturer
+            || this.noInfo : this.disconnectedText}`;
     }
 }

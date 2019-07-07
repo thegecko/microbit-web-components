@@ -23,16 +23,16 @@ export class MicrobitStateMovement extends LitElement {
     /**
      * TThe CSS variable to use for the background when still
      */
-    @property()
+    @property({attribute: "still-background"})
     public stillBackground: string = "microbit-still";
 
     /**
      * The CSS variable to use for the background when moved
      */
-    @property()
+    @property({attribute: "moved-background"})
     public movedBackground: string = "microbit-moved";
 
-    protected background = this.stillBackground;
+    private background = this.stillBackground;
 
     constructor() {
         super();
