@@ -21,19 +21,18 @@ export class MicrobitStateMovement extends LitElement {
     public frequency: number = 20;
 
     /**
-     * The css class to use when still
+     * TThe CSS variable to use for the background when still
      */
     @property()
-    public stillClass: string = "microbit-still";
+    public stillBackground: string = "microbit-still";
 
     /**
-     * The css class to use when moved
+     * The CSS variable to use for the background when moved
      */
     @property()
-    public movedClass: string = "microbit-moved";
+    public movedBackground: string = "microbit-moved";
 
-    @property({ attribute: false, reflect: false })
-    public className = this.stillClass;
+    protected background = this.stillBackground;
 
     constructor() {
         super();
@@ -41,38 +40,39 @@ export class MicrobitStateMovement extends LitElement {
     }
 
     public render() {
+        const style = `background: var(--${this.background})`;
         return html`
-            <span class=${this.className}>
+            <span style=${style}>
                 <slot />
             </span>
         `;
     }
 
-    private setClassName(data: AccelerometerData) {
-        this.className = (Math.abs(data.x) > this.sensitivity
-            || Math.abs(data.y) > this.sensitivity
-            || Math.abs(data.z) > this.sensitivity) ? this.movedClass
-            : this.stillClass;
-    }
+    public updated(changedProps: Map<string, any>) {
+        super.updated(changedProps);
 
-    public attributeChangedCallback(name: string, oldval: string | null, newval: string | null) {
-        super.attributeChangedCallback(name, oldval, newval);
-
-        if (name === "services") {
-            this.watchHandler();
+        if (changedProps.has("services")) {
+            this.servicesUpdated();
         }
     }
 
-    private async watchHandler() {
+    protected async servicesUpdated() {
         if (!this.services || !this.services.accelerometerService) {
-            this.className = this.stillClass;
+            this.background = this.stillBackground;
             return;
         }
 
         const service = this.services.accelerometerService;
         await service.setAccelerometerPeriod(this.frequency as AccelerometerPeriod);
-        const data = await service.readAccelerometerData();
-        this.setClassName(data);
-        await service.addEventListener("accelerometerdatachanged", event => this.setClassName(event.detail));
+        await service.addEventListener("accelerometerdatachanged", event => this.setBackground(event.detail));
+        this.setBackground(await service.readAccelerometerData());
+    }
+
+    private setBackground(data: AccelerometerData) {
+        this.background = (Math.abs(data.x) > this.sensitivity
+            || Math.abs(data.y) > this.sensitivity
+            || Math.abs(data.z) > this.sensitivity) ? this.movedBackground
+            : this.stillBackground;
+        this.requestUpdate();
     }
 }

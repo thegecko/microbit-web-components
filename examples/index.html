@@ -4,29 +4,17 @@
     <title>Microbit Web Components</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
     <style>
+        :root {
+            --microbit-disconnected: lightcoral;
+            --microbit-connected: yellowgreen;
+            --microbit-button-release: lightcoral;
+            --microbit-button-short-press: yellow;
+            --microbit-button-long-press: yellowgreen;
+            --microbit-still: lightcoral;
+            --microbit-moved: yellowgreen;
+        }
         .container > * {
             display: block;
-        }
-        .microbit-disconnected > .state {
-            background: lightcoral;
-        }
-        .microbit-connected > .state {
-            background: yellowgreen;
-        }
-        .microbit-release > .state {
-            background: lightcoral;
-        }
-        .microbit-short-press > .state {
-            background: yellow;
-        }
-        .microbit-long-press > .state {
-            background: yellowgreen;
-        }
-        .microbit-still > .state {
-            background: lightcoral;
-        }
-        .microbit-moved > .state {
-            background: yellowgreen;
         }
         .microbit-matrix {
             display: flex;

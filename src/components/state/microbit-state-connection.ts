@@ -7,16 +7,16 @@ export class MicrobitStateConnection extends LitElement {
     public device: BluetoothDevice | null = null;
 
     /**
-     * The css class to use when connected
+     * The CSS variable to use for the background when connected
      */
     @property()
-    public connectedClass: string = "microbit-connected";
+    public connectedBackground: string = "microbit-connected";
 
     /**
-     * The css class to use when disconnected
+     * The CSS variable to use for the background when disconnected
      */
     @property()
-    public disconnectedClass: string = "microbit-disconnected";
+    public disconnectedBackground: string = "microbit-disconnected";
 
     constructor() {
         super();
@@ -24,9 +24,11 @@ export class MicrobitStateConnection extends LitElement {
     }
 
     public render() {
-        const className = this.device ? this.connectedClass : this.disconnectedClass;
+        const background = this.device ? this.connectedBackground : this.disconnectedBackground;
+        const style = `background: var(--${background})`;
+
         return html`
-            <span class=${className}>
+            <span style=${style}>
                 <slot />
             </span>
         `;

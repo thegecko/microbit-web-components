@@ -1,69 +1,12 @@
-import { customElement, LitElement, property, html } from "lit-element";
-import { Services } from "microbit-web-bluetooth";
-import { microbitStore } from "../../microbit-store";
+import { customElement } from "lit-element";
+import { ButtonService } from "microbit-web-bluetooth/types/services/button";
+import { MicrobitStateButton } from "./microbit-state-button";
 
 @customElement("microbit-state-button-a")
-export class MicrobitStateButtonA extends LitElement {
-    @property()
-    public services: Services | null = null;
+export class MicrobitStateButtonA extends MicrobitStateButton {
 
-    /**
-     * The css class to use when released
-     */
-    @property()
-    public releaseClass: string = "microbit-release";
-
-    /**
-     * The css class to use when short-pressed
-     */
-    @property()
-    public shortPressClass: string = "microbit-short-press";
-
-    /**
-     * The css class to use when long-pressed
-     */
-    @property()
-    public longPressClass: string = "microbit-long-press";
-
-    @property({ attribute: false, reflect: false })
-    public className = this.releaseClass;
-
-    constructor() {
-        super();
-        microbitStore.addListener(this);
-    }
-
-    public render() {
-        return html`
-            <span class=${this.className}>
-                <slot />
-            </span>
-        `;
-    }
-
-    public attributeChangedCallback(name: string, oldval: string | null, newval: string | null) {
-        super.attributeChangedCallback(name, oldval, newval);
-
-        if (name === "services") {
-            this.watchHandler();
-        }
-    }
-
-    private async watchHandler() {
-        if (!this.services || !this.services.buttonService) {
-            this.className = this.releaseClass;
-            return;
-        }
-
-        const service = this.services.buttonService;
-        const state = await service.readButtonAState();
-        this.setClassName(state);
-        await service.addEventListener("buttonastatechanged", event => this.setClassName(event.detail));
-    }
-
-    private setClassName(state: number) {
-        this.className = state === 1 ? this.shortPressClass
-        : state === 2 ? this.longPressClass
-        : this.releaseClass;
+    protected async serviceUpdate(service: ButtonService) {
+        await service.addEventListener("buttonastatechanged", event => this.setBackground(event.detail));
+        this.setBackground(await service.readButtonAState());
     }
 }
