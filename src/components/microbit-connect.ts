@@ -25,7 +25,11 @@ export class MicrobitConnect extends LitElement {
     }
 
     public render() {
-        return html`<button @click=${this.connectDisconnect}>${this.getLabel()}</button>`;
+        return html`
+            <button @click=${this.connectDisconnect}>
+                ${this.getLabel()}
+            </button>
+        `;
     }
 
     private getLabel() {

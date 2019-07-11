@@ -1,4 +1,4 @@
-import { customElement, LitElement, property } from "lit-element";
+import { customElement, LitElement, property, html } from "lit-element";
 import { Services } from "microbit-web-bluetooth";
 import { LedMatrix } from "microbit-web-bluetooth/types/services/led";
 import { microbitStore } from "../../microbit-store";
@@ -19,19 +19,19 @@ export class MicrobitMatrix extends LitElement {
     /**
      * The template for identifying child LEDs
      */
-    @property()
+    @property({attribute: "id-template"})
     public idTemplate: string = "microbit-matrix-${row}-${column}";
 
     /**
-     * The css class for off LEDs
+     * The CSS class for off LEDs
      */
-    @property()
+    @property({attribute: "off-class"})
     public offClass: string = "microbit-matrix-off";
 
     /**
-     * The css class for on LEDs
+     * The CSS class for on LEDs
      */
-    @property()
+    @property({attribute: "on-class"})
     public onClass: string = "microbit-matrix-on";
 
     private matrix!: LedMatrix;
@@ -42,15 +42,23 @@ export class MicrobitMatrix extends LitElement {
         microbitStore.addListener(this);
     }
 
-    public attributeChangedCallback(name: string, oldval: string | null, newval: string | null) {
-        super.attributeChangedCallback(name, oldval, newval);
+    public render() {
+        return html`
+            <span>
+                <slot />
+            </span>
+        `;
+    }
 
-        if (name === "services") {
-            this.watchHandler();
+    public updated(changedProps: Map<string, any>) {
+        super.updated(changedProps);
+
+        if (changedProps.has("services")) {
+            this.servicesUpdated();
         }
     }
 
-    private async watchHandler() {
+    private async servicesUpdated() {
         const els: HTMLElement[][] = [[], [], [], [], []];
 
         for (let i = 0; i < 5; i++) {

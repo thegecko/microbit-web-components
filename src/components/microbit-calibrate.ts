@@ -10,7 +10,7 @@ export class MicrobitCalibrate extends LitElement {
     /**
      * The button label to calibrate
      */
-    @property()
+    @property({attribute: "calibrate-label"})
     public calibrateLabel: string = "Calibrate";
 
     constructor() {
@@ -23,7 +23,12 @@ export class MicrobitCalibrate extends LitElement {
     }
 
     public render() {
-        return html`<button disabled=${!this.services || !this.services.magnetometerService} @click=${this.calibrate}>${this.calibrateLabel}</button>`;
+        const disabled = !(this.services && this.services.magnetometerService);
+        return html`
+            <button ?disabled=${disabled} @click=${this.calibrate}>
+                ${this.calibrateLabel}
+            </button>
+        `;
     }
 
     private async calibrate() {

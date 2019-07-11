@@ -7,7 +7,6 @@ export class MicrobitCompass extends LitElement {
     @property()
     public services: Services | null = null;
 
-    @property({ attribute: false, reflect: false })
     private bearing?: number = 0;
 
     constructor() {
@@ -16,29 +15,38 @@ export class MicrobitCompass extends LitElement {
     }
 
     public render() {
-        const style = {
-            position: "absolute",
-            transform: `rotate(${this.bearing}deg)`
-        };
+        const style = `position: "absolute", transform: rotate(${this.bearing}deg)`;
 
-        return html`<span style=${style}><slot /></span>`;
+        return html`
+            <span style=${style}>
+                <slot />
+            </span>
+        `;
     }
 
-    public attributeChangedCallback(name: string, oldval: string | null, newval: string | null) {
-        super.attributeChangedCallback(name, oldval, newval);
+    public updated(changedProps: Map<string, any>) {
+        super.updated(changedProps);
 
-        if (name === "services") {
-            this.watchHandler();
+        if (changedProps.has("services")) {
+            this.servicesUpdated();
         }
     }
 
-    private async watchHandler() {
+    private async servicesUpdated() {
         if (!this.services || !this.services.magnetometerService) {
+            this.bearing = 0;
             return;
         }
 
         const service = this.services.magnetometerService;
-        this.bearing = await service.readMagnetometerBearing();
-        await service.addEventListener("magnetometerbearingchanged", event => this.bearing = event.detail);
+        await service.addEventListener("magnetometerbearingchanged", event => this.setBearing(event.detail));
+        this.setBearing(await service.readMagnetometerBearing());
+    }
+
+    private setBearing(bearing?: number) {
+        if (bearing) {
+            this.bearing = bearing;
+            this.requestUpdate();
+        }
     }
 }

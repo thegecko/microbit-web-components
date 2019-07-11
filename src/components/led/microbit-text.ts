@@ -10,13 +10,13 @@ export class MicrobitText extends LitElement {
     /**
      * The text shown on the button
      */
-    @property()
+    @property({attribute: "button-label"})
     public buttonLabel: string = "";
 
     /**
      * The speed to scroll the text
      */
-    @property()
+    @property({attribute: "scroll-delay"})
     public scrollDelay: number = 100;
 
     private text = "";
@@ -28,36 +28,41 @@ export class MicrobitText extends LitElement {
 
     public render() {
         let button: any;
+        const disabled = !(this.services && this.services.ledService);
 
         if (this.buttonLabel) {
-            button = html`<input
-                type="submit"
-                disabled=${!this.services || !this.services.ledService}
-                value=${this.buttonLabel}
-                @click=${this.writeText}></input>`;
+            button = html`
+                <input
+                    type="submit"
+                    value=${this.buttonLabel}
+                    @click=${this.writeText}
+                    ?disabled=${disabled}>
+                </input>
+            `;
         }
 
         return html`
             <span>
                 <input
                     type="input"
-                    disabled=${!this.services || !this.services.ledService}
                     maxLength=20
-                    @keyup=${this.handleKey}></input>
+                    @keyup=${this.handleKey}
+                    ?disabled=${disabled}>
+                </input>
                 ${button}
             </span>
         `;
     }
 
-    public attributeChangedCallback(name: string, oldval: string | null, newval: string | null) {
-        super.attributeChangedCallback(name, oldval, newval);
+    public updated(changedProps: Map<string, any>) {
+        super.updated(changedProps);
 
-        if (name === "services") {
-            this.watchHandler();
+        if (changedProps.has("services")) {
+            this.servicesUpdated();
         }
     }
 
-    private async watchHandler() {
+    private async servicesUpdated() {
         if (this.services && this.services.ledService) {
             await this.services.ledService.setScrollingDelay(this.scrollDelay);
         }

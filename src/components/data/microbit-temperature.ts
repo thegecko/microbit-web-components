@@ -4,28 +4,34 @@ import { microbitStore } from "../../microbit-store";
 
 @customElement("microbit-temperature")
 export class MicrobitTemperature extends LitElement {
+
     @property()
     public services: Services | null = null;
 
     /**
      * The interval to check the temperature (ms)
      */
-    @property()
+    @property({attribute: "temperature-period"})
     public temperaturePeriod: number = 100;
+
+    /**
+     * The text to display after the temperature
+     */
+    @property({attribute: "temperature-suffix"})
+    public temperatureSuffix: string = "°c";
 
     /**
      * The text shown when disconnected
      */
-    @property()
+    @property({attribute: "disconnected-text"})
     public disconnectedText: string = "Disconnected";
 
     /**
      * The text shown when no temperature
      */
-    @property()
+    @property({attribute: "no-temperature"})
     public noTemperature: string = "No temperature found";
 
-    @property({ attribute: false, reflect: false })
     private temperature: string = this.disconnectedText;
 
     constructor() {
@@ -33,19 +39,23 @@ export class MicrobitTemperature extends LitElement {
         microbitStore.addListener(this);
     }
 
+    public createRenderRoot() {
+        return this;
+    }
+
     public render() {
         return html`${this.temperature}`;
     }
 
-    public attributeChangedCallback(name: string, oldval: string | null, newval: string | null) {
-        super.attributeChangedCallback(name, oldval, newval);
+    public updated(changedProps: Map<string, any>) {
+        super.updated(changedProps);
 
-        if (name === "services") {
-            this.watchHandler();
+        if (changedProps.has("services")) {
+            this.servicesUpdated();
         }
     }
 
-    private async watchHandler() {
+    private async servicesUpdated() {
         if (!this.services) {
             this.temperature = this.disconnectedText;
             return;
@@ -58,9 +68,13 @@ export class MicrobitTemperature extends LitElement {
             return;
         }
 
-        const temperature = await service.readTemperature();
-        this.temperature = `${temperature}°c`;
         await service.setTemperaturePeriod(this.temperaturePeriod);
-        await service.addEventListener("temperaturechanged", event => this.temperature = `${event.detail}°c`);
+        await service.addEventListener("temperaturechanged", event => this.setTemperature(event.detail));
+        this.setTemperature(await service.readTemperature());
+    }
+
+    private setTemperature(temperature: number) {
+        this.temperature = temperature ? `${temperature}${this.temperatureSuffix}` : this.noTemperature;
+        this.requestUpdate();
     }
 }
