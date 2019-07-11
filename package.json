@@ -5,7 +5,7 @@
   "homepage": "https://github.com/thegecko/microbit-web-components",
   "license": "MIT",
   "main": "dist/index.js",
-  "module": "dist/esm/index.js",
+  "module": "dist/microbit/microbit.esm.js",
   "types": "dist/types/components.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "files": [
@@ -24,7 +24,7 @@
   ],
   "scripts": {
     "build": "stencil build --docs",
-    "start": "stencil build --dev --watch --serve --config stencil.config.dev.ts",
+    "start": "stencil build --prod --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll"
   },
@@ -32,7 +32,7 @@
     "node": ">=8.14.0"
   },
   "dependencies": {
-    "@stencil/core": "^0.18.1",
+    "@stencil/core": "^1.1.6",
     "microbit-web-bluetooth": "^0.3.0"
   }
 }

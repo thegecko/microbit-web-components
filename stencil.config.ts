@@ -4,11 +4,9 @@ export const config: Config = {
     namespace: 'microbit',
     outputTargets: [
         { type: 'dist' },
-        { type: 'docs' },
-        {
-            type: 'www',
-            baseUrl: '/microbit-web-components/www/',
-            serviceWorker: null
-        }
-    ]
+        { type: 'docs-readme' }
+    ],
+    devServer: {
+        reloadStrategy: 'pageReload'
+    }
 };

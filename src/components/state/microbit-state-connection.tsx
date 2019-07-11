@@ -1,4 +1,4 @@
-import { Component, Prop, Element } from "@stencil/core";
+import { h, Component, Prop, Element } from "@stencil/core";
 import { microbitStore } from '../../microbit-store';
 
 @Component({

@@ -1,4 +1,4 @@
-import { Component, Prop, Element } from "@stencil/core";
+import { h, Component, Prop, Element } from "@stencil/core";
 import { requestMicrobit, getServices } from "microbit-web-bluetooth";
 import { microbitStore } from '../microbit-store';
 
