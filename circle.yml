@@ -25,7 +25,7 @@ jobs:
       - run: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
       - run: git config --global user.name thegecko
       - run: git config --global user.email github@thegecko.org
-      - run: git add --force dist www
+      - run: git add --force dist
       - run: git stash save
       - run: git checkout gh-pages
       - run: git merge master --no-commit
