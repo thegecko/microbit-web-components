@@ -2,4 +2,3 @@
 .stencil
 dist
 node_modules
-src/**/readme.md

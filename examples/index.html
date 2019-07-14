@@ -2,7 +2,17 @@
 
 <head>
     <title>Microbit Web Components</title>
+    <link rel="stylesheet" href="https://thegecko.github.io/Barebones/dist/css/barebones.css">
     <style>
+        :root {
+            --button-color: var(--button-primary-color);
+            --button-background: var(--accent-color);
+            --border-color: var(--accent-color);
+            --button-color-hover: var(--button-primary-color);
+            --button-background-hover: var(--accent-color-hover);
+            --border-color-richer: var(--accent-color-hover);
+            --background-color-softer: var(--accent-color-disabled);
+        }
         .container > * {
             display: block;
         }
@@ -60,6 +70,7 @@
 </head>
 
 <body>
+    <h1>micro:bit Web Components</h1>
     <div class="container">
         <microbit-connect></microbit-connect>
         <microbit-name></microbit-name>
@@ -69,18 +80,18 @@
         <microbit-firmware></microbit-firmware>
         <microbit-hardware></microbit-hardware>
         <microbit-temperature></microbit-temperature>
-        <microbit-state-connection>
+        <microbit-connection>
             <span class="state">Connected</span>
-        </microbit-state-connection>
-        <microbit-state-button-a>
+        </microbit-connection>
+        <microbit-button-a>
             <span class="state">Button A</span>
-        </microbit-state-button-a>
-        <microbit-state-button-b>
+        </microbit-button-a>
+        <microbit-button-b>
             <span class="state">Button B</span>
-        </microbit-state-button-b>
-        <microbit-state-movement sensitivity="1.2">
+        </microbit-button-b>
+        <microbit-movement sensitivity="1.2">
             <span class="state">Movement</span>
-        </microbit-state-movement>
+        </microbit-movement>
         <microbit-matrix class="microbit-matrix" id-template="matrix-${row}-${column}">
             <div id="matrix-0-0" class="microbit-matrix-led"></div>
             <div id="matrix-0-1" class="microbit-matrix-led"></div>
@@ -117,5 +128,3 @@
         </microbit-compass>
     </div>
 </body>
-
-</html>
