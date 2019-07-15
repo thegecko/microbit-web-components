@@ -47,4 +47,5 @@ Web Components library for micro:bit
 - [ ] Microbit Channel Selection
 
 ### Firmware
+- [x] Initiate DFU Mode
 - [ ] Update Firmware

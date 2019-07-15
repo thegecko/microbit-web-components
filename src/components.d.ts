@@ -76,6 +76,13 @@ export namespace Components {
     */
     'disconnectedClass': string;
   }
+  interface MicrobitDfu {
+    /**
+    * The button label to initiate DFU mode
+    */
+    'dfuLabel': string;
+    'services': Services;
+  }
   interface MicrobitFirmware {
     'deviceInformation': DeviceInformation;
     /**
@@ -257,6 +264,12 @@ declare global {
     new (): HTMLMicrobitConnectionElement;
   };
 
+  interface HTMLMicrobitDfuElement extends Components.MicrobitDfu, HTMLStencilElement {}
+  var HTMLMicrobitDfuElement: {
+    prototype: HTMLMicrobitDfuElement;
+    new (): HTMLMicrobitDfuElement;
+  };
+
   interface HTMLMicrobitFirmwareElement extends Components.MicrobitFirmware, HTMLStencilElement {}
   var HTMLMicrobitFirmwareElement: {
     prototype: HTMLMicrobitFirmwareElement;
@@ -335,6 +348,7 @@ declare global {
     'microbit-compass': HTMLMicrobitCompassElement;
     'microbit-connect': HTMLMicrobitConnectElement;
     'microbit-connection': HTMLMicrobitConnectionElement;
+    'microbit-dfu': HTMLMicrobitDfuElement;
     'microbit-firmware': HTMLMicrobitFirmwareElement;
     'microbit-hardware': HTMLMicrobitHardwareElement;
     'microbit-manufacturer': HTMLMicrobitManufacturerElement;
@@ -412,6 +426,13 @@ declare namespace LocalJSX {
     * The CSS class to use when disconnected
     */
     'disconnectedClass'?: string;
+  }
+  interface MicrobitDfu extends JSXBase.HTMLAttributes<HTMLMicrobitDfuElement> {
+    /**
+    * The button label to initiate DFU mode
+    */
+    'dfuLabel'?: string;
+    'services'?: Services;
   }
   interface MicrobitFirmware extends JSXBase.HTMLAttributes<HTMLMicrobitFirmwareElement> {
     'deviceInformation'?: DeviceInformation;
@@ -561,6 +582,7 @@ declare namespace LocalJSX {
     'microbit-compass': MicrobitCompass;
     'microbit-connect': MicrobitConnect;
     'microbit-connection': MicrobitConnection;
+    'microbit-dfu': MicrobitDfu;
     'microbit-firmware': MicrobitFirmware;
     'microbit-hardware': MicrobitHardware;
     'microbit-manufacturer': MicrobitManufacturer;
