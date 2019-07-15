@@ -1,0 +1,1 @@
+import{r as e,g as t}from"./p-416d80af.js";import{m as s}from"./p-ede9ed58.js";class i{constructor(t){e(this,t),this.device=null,this.disconnectedText="Disconnected",s.addListener(this)}render(){return this.device?this.device.name:this.disconnectedText}get el(){return t(this)}}export{i as microbit_name};

@@ -1,0 +1,1 @@
+const t=new class{constructor(){this.data={},this.listeners=[]}_update(t,s){this.data[t.toString()]=s,this.listeners.forEach(a=>{void 0!==a[t]&&(a[t]=s)})}addListener(t){this.listeners.push(t),Object.keys(this.data).forEach(s=>{void 0!==t[s]&&(t[s]=this.data[s])})}update(t,s){this._update(t,s)}empty(){Object.keys(this.data).forEach(t=>{this._update(t,null)})}};export{t as m};
