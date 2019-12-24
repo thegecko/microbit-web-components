@@ -7,6 +7,7 @@
     "microbit-connect/microbit-connect.js",
     "microbit-connection/microbit-connection.js",
     "microbit-dfu/microbit-dfu.js",
+    "microbit-firmware/microbit-firmware.js",
     "microbit-hardware/microbit-hardware.js",
     "microbit-manufacturer/microbit-manufacturer.js",
     "microbit-matrix/microbit-matrix.js",
@@ -14,10 +15,9 @@
     "microbit-movement/microbit-movement.js",
     "microbit-name/microbit-name.js",
     "microbit-receive/microbit-receive.js",
+    "microbit-text/microbit-text.js",
     "microbit-send/microbit-send.js",
     "microbit-temperature/microbit-temperature.js",
-    "microbit-text/microbit-text.js",
-    "microbit-firmware/microbit-firmware.js",
     "microbit-serial/microbit-serial.js"
   ],
   "compiler": {
