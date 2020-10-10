@@ -6,6 +6,12 @@
 
 Web Components library for micro:bit
 
+# Device Setup
+
+Please refer to the [microbit-web-bluetooth](https://github.com/thegecko/microbit-web-bluetooth) documentation for creating a `.hex` file for your device and some sample pgrograms:
+
+https://thegecko.github.io/microbit-web-bluetooth/docs/index.html#device-setup
+
 # Implementation Status
 
 ## Actions

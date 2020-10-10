@@ -2,8 +2,8 @@
   "entries": [
     "microbit-button-a/microbit-button-a.js",
     "microbit-button-b/microbit-button-b.js",
-    "microbit-compass/microbit-compass.js",
     "microbit-calibrate/microbit-calibrate.js",
+    "microbit-compass/microbit-compass.js",
     "microbit-connect/microbit-connect.js",
     "microbit-connection/microbit-connection.js",
     "microbit-dfu/microbit-dfu.js",
@@ -15,10 +15,10 @@
     "microbit-movement/microbit-movement.js",
     "microbit-name/microbit-name.js",
     "microbit-receive/microbit-receive.js",
-    "microbit-text/microbit-text.js",
     "microbit-send/microbit-send.js",
+    "microbit-serial/microbit-serial.js",
     "microbit-temperature/microbit-temperature.js",
-    "microbit-serial/microbit-serial.js"
+    "microbit-text/microbit-text.js"
   ],
   "compiler": {
     "name": "@stencil/core",
