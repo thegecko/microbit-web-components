@@ -6,6 +6,12 @@
 
 Web Components library for micro:bit
 
+# Example
+
+All of the implemented web components can be found in the [example page](https://github.com/thegecko/microbit-web-components/blob/master/examples/index.html) live here:
+
+https://thegecko.github.io/microbit-web-components
+
 # Device Setup
 
 Please refer to the [microbit-web-bluetooth](https://github.com/thegecko/microbit-web-bluetooth) documentation for creating a `.hex` file for your device and some sample pgrograms:
