@@ -1,6 +1,5 @@
 # micro:bit Web Components
 
-[![Circle CI](https://circleci.com/gh/thegecko/microbit-web-components.svg?style=shield&circle-token=eac64b63d7ab07b21242da11f5e3e8ce83e76140)](https://circleci.com/gh/thegecko/microbit-web-components/)
 [![npm](https://img.shields.io/npm/dm/microbit-web-components.svg)](https://www.npmjs.com/package/microbit-web-components)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://spdx.org/licenses/MIT.html)
 
@@ -14,7 +13,7 @@ https://thegecko.github.io/microbit-web-components
 
 # Device Setup
 
-Please refer to the [microbit-web-bluetooth](https://github.com/thegecko/microbit-web-bluetooth) documentation for creating a `.hex` file for your device and some sample pgrograms:
+Please refer to the [microbit-web-bluetooth](https://github.com/thegecko/microbit-web-bluetooth) documentation for creating a `.hex` file for your device and some sample programs:
 
 https://thegecko.github.io/microbit-web-bluetooth/docs/index.html#device-setup
 
